@@ -33,13 +33,15 @@ const Signup = () => {
 
     else {
       try {
-        await axios.post("http://localhost:3000/signup", {email, password, username, dorm})
+        await axios.post("http://localhost:5000/api/user/", {email, password, 'name': username, dorm})
         .then(res=>{
           // if(res.data=="exist"){
           //   alert("User already exist")
           // }
           // else if (res.data=="nonexist"){
-            history("/home", {state:{id:username}})
+
+          localStorage.setItem('token', res.data.token);
+          history("/home", {state:{id:username, token: res.data.token}})
         //   }
         })
         .catch(e=>{
