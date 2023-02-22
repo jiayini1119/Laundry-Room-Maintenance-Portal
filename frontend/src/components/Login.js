@@ -8,16 +8,11 @@ const Login = () => {
 
   const [email, setEmail]=useState();
   const [password, setPassword]=useState();
-  const [username, setUsername]=useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
 
-    if (!username) {
-      alert("Please enter your username");
-      return;
-    }
-    else if (!email) {
+    if (!email) {
       alert("Please enter your email");
       return;
     }
@@ -29,10 +24,10 @@ const Login = () => {
 
     else {
       try {
-        await axios.post("http://localhost:3000/", {username, email, password})
+        await axios.post("http://localhost:5000/api/user/login", {email, password})
         .then(res=>{
           // if(res.data=="exist"){
-           history("/home", {state:{id:username}})
+           history("/home", {state:{id: res.data.name}})
           // }
           // else if (res.data=="notexist"){
           //   alert("User has not signed up")
@@ -53,9 +48,6 @@ const Login = () => {
     <div className='LoginPage'>
       <h1>Login</h1>
       <form method='post'>
-        <div>
-          <input type="username" onChange={(e)=>setUsername(e.target.value)} placeholder='username' id="username" name="username"/>
-        </div>
         <div>
           <input type="email" onChange={(e)=>setEmail(e.target.value)} placeholder='email' id="email" name="email"/>
         </div>
