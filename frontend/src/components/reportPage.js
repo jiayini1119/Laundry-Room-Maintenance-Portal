@@ -14,6 +14,7 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
+import Label from './label';
 
 function createData(name, status) {
   return {
@@ -25,20 +26,20 @@ function createData(name, status) {
 const rows = [
   createData('DEN001', 'working'),
   createData('DEN002', 'working'),
-  createData('DEN003', 'in maintainence'),
-  createData('DEN004', 'in maintainence'),
-  createData('DEN005', 'in maintainence'),
-  createData('DEN006', 'in maintainence'),
-  createData('SV001', 'in maintainence'),
+  createData('DEN003', 'working'),
+  createData('DEN004', 'in maintenance'),
+  createData('DEN005', 'in maintenance'),
+  createData('DEN006', 'working'),
+  createData('SV001', 'working'),
   createData('SV002', 'working'),
   createData('SV003', 'working'),
-  createData('SP001', 'in maintainence'),
+  createData('SP001', 'in maintenance'),
   createData('SP002', 'working'),
   createData('SP003', 'working'),
-  createData('HC001', 'in maintainence'),
-  createData('HC002', 'in maintainence'),
+  createData('HC001', 'working'),
+  createData('HC002', 'in maintenance'),
   createData('HC003', 'working'),
-  createData('HC004', 'in maintainence'),
+  createData('HC004', 'in maintenance'),
   createData('OH001', 'working'),
   createData('OH002', 'working'),
   createData('RC001', 'working'),
@@ -68,8 +69,6 @@ const headCells = [
 
 function EnhancedTableHead(props) {
   const { onSelectAllClick, numSelected, rowCount } = props;
-
-
   return (
     <TableHead>
       <TableRow>
@@ -88,7 +87,7 @@ function EnhancedTableHead(props) {
           <TableCell
             key={headCell.id}
             align={'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            padding={'normal'}
           >
             {headCell.label}
           </TableCell>
@@ -205,7 +204,7 @@ export default function EnhancedTable() {
 
   return (
     <Box sx={{ width: '100%'}}>
-      <Paper sx={{ width: '80%', m: 20}}>
+      <Paper elevation={10} sx={{ width: '80%', m: 20}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -216,6 +215,7 @@ export default function EnhancedTable() {
               numSelected={selected.length}
               onSelectAllClick={handleSelectAllClick}
               rowCount={rows.length}
+              stickyHeader
             />
             <TableBody>
               {rows
@@ -250,7 +250,11 @@ export default function EnhancedTable() {
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="left">{row.status}</TableCell>
+                      <TableCell align="left">
+                        <Label color={(row.status === 'working' && 'success') || 'error'}>
+                        {row.status}
+                        </Label>
+                      </TableCell>
                     </TableRow>
                   );
                 })}
@@ -267,7 +271,7 @@ export default function EnhancedTable() {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[5, 7, 10]}
+          rowsPerPageOptions={[7, 9, 11]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
