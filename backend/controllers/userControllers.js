@@ -1,6 +1,7 @@
 const asyncHandler = require('express-async-handler');
-const User = require("../models/userModel")
-const generateToken = require('../config/generateToken')
+const User = require("../models/userModel");
+const Dorm = require("../models/dormModel");
+const generateToken = require('../config/generateToken');
 
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, dorm } = req.body
@@ -62,6 +63,12 @@ const authUser = asyncHandler(async(req, res) => {
     }
 });
 
+const searchDorms = asyncHandler(async(req, res) => {
+    //query the database
+    const dorm = await Dorm.find({name: req.query.search});
+    res.send(dorm);
+});
 
-module.exports = {registerUser, authUser}
+
+module.exports = {registerUser, authUser, searchDorms}
 
