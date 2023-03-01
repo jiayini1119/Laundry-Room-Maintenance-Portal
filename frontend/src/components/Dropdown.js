@@ -10,7 +10,6 @@ function Dropdown() {
   const handleChange = (event) => {
     setValue(event.target.value); // Update value when an option is selected
     history("/home", {state: {id: location.state.id, dorm: event.target.value}});
-    console.log(event.target.value);
   };
 
   return (

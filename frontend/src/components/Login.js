@@ -31,7 +31,7 @@ const Login = () => {
         await axios.post("http://localhost:4000/api/user/login", {username, email, password})
         .then(res=>{
           if (res.data.email==="admin@admin.com") {
-            history("/adminhome", {state:{id: res.data.name, dorm: res.data.dorm}})}
+            history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
           else {
             history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
         })
