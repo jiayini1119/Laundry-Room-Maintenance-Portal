@@ -3,6 +3,7 @@ import axios from "axios";
 import { Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 import Navbar from "./Navbar";
+import Logout from "./Logout"
 
 const Home = () => {
   const location = useLocation();
@@ -19,7 +20,8 @@ const Home = () => {
   return (
     <>
       <Navbar title="Home" />
-      <Typography variant="h3">Welcome {location.state.id}!</Typography>
+      <Typography variant="h3">Welcome to Laundry Reporter, Poor Bruin {location.state.id}!</Typography>
+      <Logout/>
     </>
   )
 }
