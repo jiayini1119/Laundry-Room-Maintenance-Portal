@@ -1,7 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { useNavigate, Link } from 'react-router-dom';
+import "./LoginStyle.css"
 
+const cheerio = require('cheerio');
 
 const Signup = () => {
   
@@ -30,23 +32,25 @@ const Signup = () => {
       alert("Please enter a dorm");
       return;
     }
+    else if (dorm !== "Hedrick" && dorm !== "Sunset" && dorm !== "Rieber" && dorm !== "Deneve" && dorm !== "Saxon") {
+      alert ("Please enter dorm from the following: Hedrick/Sunset/Rieber/Deneve/Saxon")
+    }
 
     else {
       try {
-        await axios.post("http://localhost:5000/api/user/", {email, password, 'name': username, dorm})
+        await axios.post("http://localhost:4000/api/user/", {email, password, 'name': username, dorm})
         .then(res=>{
-          // if(res.data=="exist"){
-          //   alert("User already exist")
-          // }
-          // else if (res.data=="nonexist"){
-
           localStorage.setItem('token', res.data.token);
           history("/home", {state:{id:username, token: res.data.token}})
-        //   }
         })
-        .catch(e=>{
-          alert("Wrong details")
-          console.log(e);
+        .catch(error => {
+          if (error.response) {
+            console.log(error.response.data);
+            const $ = cheerio.load(error.response.data.toString());
+            const errorMessage = $('pre').text(); 
+            const messageWithoutStack = errorMessage.split('at')[0];
+            alert(messageWithoutStack); 
+          }
         })
       }
       catch(err){
@@ -57,8 +61,8 @@ const Signup = () => {
 
   return (
     <div className='SignupPage'>
-      <h1>Signup</h1>
-      <form method='post'>
+      <form className='authForm' method='post'>
+      <h1 className='authHead'>Signup</h1>
       <div>
           <input type="username" onChange={(e)=>setUsername(e.target.value)} placeholder='username' id="username" name="username"/>
         </div>
@@ -69,13 +73,12 @@ const Signup = () => {
           <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='password' id="password" name="password"/>
         </div>
         <div>
-          <input type="dorm" onChange={(e)=>setDorm(e.target.value)} placeholder='dorm' id="dorm" name="dorm"/>
+          <input type="dorm" onChange={(e)=>setDorm(e.target.value)} placeholder='Hedrick/Sunset/Rieber/Deneve/Saxon' id="dorm" name="dorm"/>
         </div>
-      <input type='submit' onClick={handleSubmit}/>
+      <button className='authSubmit' onClick={handleSubmit}> Submit </button>
       <br/>
-      <p>If you are have already signed up, click Login Page</p>
-      <br/>
-      <Link to='/'>Login Page</Link>
+      <p className='remind'>Already signed up?</p>
+      <Link to='/' className='authLink'>Login Page</Link>
       </form>
     </div>
   )
