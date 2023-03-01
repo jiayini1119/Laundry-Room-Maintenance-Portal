@@ -19,5 +19,10 @@ app.use('/api/user', userRoutes)
 
 app.use(notFound)
 
+app.post("/home", cors(), async(req, res) => {
+  const {id} = req.body;
+
+});
+
 const PORT = process.env.PORT
 app.listen(PORT, console.log("Server successfully started on PORT", PORT));
