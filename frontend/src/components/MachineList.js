@@ -1,11 +1,14 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const MachineList = ({ machines }) => {
   const renderMachine = (machine) => {
     const icon = machine.icon || 'default-icon.png'; // fallback to default icon if no icon is specified
     return (
       <li key={machine.id}>
-        <img src={icon} alt={`${machine.name} icon`} />
+        <Link to={`/report/${machine.id}`}>
+          <img src={icon} alt={`${machine.name} icon`} />
+        </Link>
         <div>
           <h3>{machine.name}</h3>
           <p>{machine.description}</p>
