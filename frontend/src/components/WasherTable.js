@@ -15,6 +15,7 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Label from './label';
+import { useNavigate } from "react-router-dom";
 
 function createData(name, status) {
   return {
@@ -106,6 +107,11 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
+  const history = useNavigate()
+
+  const handleClickReport = () => {
+    history("/home/report")
+  }
 
   return (
     <Toolbar
@@ -140,7 +146,7 @@ function EnhancedTableToolbar(props) {
       )}
 
       {numSelected > 0 ? (
-        <Button variant="contained">
+        <Button variant="contained" onClick={handleClickReport}>
           Report for Maintenance
         </Button>
       ) : (
