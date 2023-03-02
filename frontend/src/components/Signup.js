@@ -41,6 +41,10 @@ const Signup = () => {
         await axios.post("http://localhost:4000/api/user/", {email, password, 'name': username, dorm})
         .then(res=>{
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('id', res.data.name);
+          localStorage.setItem('email', res.data.email);
+          localStorage.setItem('dorm', res.data.dorm)
           history("/home", {state:{id:username, token: res.data.token}})
         })
         .catch(error => {
