@@ -3,6 +3,7 @@ const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
+const reportRoutes = require("./routes/reportRoutes");
 const { notFound } = require("./middleware/errorMiddleware");
 
 const app = express()
@@ -16,6 +17,7 @@ app.get("/", cors(), (req,res)=>{
 })
 
 app.use('/api/user', userRoutes)
+app.use('/api/report', reportRoutes)
 
 app.use(notFound)
 
