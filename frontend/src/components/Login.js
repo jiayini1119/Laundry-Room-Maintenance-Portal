@@ -30,6 +30,10 @@ const Login = () => {
       try {
         await axios.post("http://localhost:4000/api/user/login", {username, email, password})
         .then(res=>{
+          localStorage.setItem('token', res.data.token);
+          localStorage.setItem('id', res.data.name);
+          localStorage.setItem('email', res.data.email);
+          localStorage.setItem('dorm', res.data.dorm)
           if (res.data.email==="admin@admin.com") {
             history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
           else {
