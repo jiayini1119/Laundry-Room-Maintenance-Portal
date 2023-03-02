@@ -2,12 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const MachineList = ({ machines }) => {
+  const handleMachineClick = (machineId) => {
+    console.log(`Clicked machine with ID ${machineId}`);
+  };
+
   const renderMachine = (machine) => {
-    const icon = machine.icon || 'default-icon.png'; // fallback to default icon if no icon is specified
+    const icon = machine.isAvailable ? machine.availableIcon || '/default-available-icon.png' : machine.unavailableIcon;
     return (
       <li key={machine.id}>
         <Link to={`/report/${machine.id}`}>
-          <img src={icon} alt={`${machine.name} icon`} />
+          <img src={icon} alt={`${machine.name} icon`} onClick={() => handleMachineClick(machine.id)} />
         </Link>
         <div>
           <h3>{machine.name}</h3>
