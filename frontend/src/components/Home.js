@@ -4,6 +4,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import Logout from "./Logout";
 import Dropdown from "./Dropdown";
 import Clock from "./Clock";
+import EnhancedTable from "./reportPage"
 import "./LoginStyle.css";
 import "./HeaderFeatures.css";
 
@@ -12,10 +13,9 @@ const Home = () => {
 
   return (
     <div className='homeheader'>
-      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id}</h1>
-      <Logout /> <Dropdown />
+      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id} <Logout /> <Dropdown /> <Clock /></h1>
       <hr></hr>
-      <Clock />
+      <EnhancedTable/>
       <p>Welcome to laundry in {location.state.dorm}</p>
     </div>
   );
