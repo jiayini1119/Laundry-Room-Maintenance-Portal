@@ -1,6 +1,5 @@
-import React, {useEffect, useState} from 'react';
-import axios from "axios";
-import { useNavigate, Link } from 'react-router-dom';
+import React from 'react';
+import { useNavigate} from 'react-router-dom';
 import "./LoginStyle.css"
 
 const Logout = () => {
@@ -11,11 +10,6 @@ const Logout = () => {
     localStorage.clear();
     history("/")
   }
-
-  const [selected, setSelected] = useState();
-  const selectionChangeHandler = (event) => {
-    setSelected(event.target.value);
-  };
 
   return(
     <button className='logoutButton' onClick = {handleLogout}> Log Out </button>
