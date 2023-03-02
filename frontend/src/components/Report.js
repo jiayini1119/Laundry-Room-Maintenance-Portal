@@ -8,7 +8,9 @@ const Report = () => {
 
   return (
     <div className='reportheader'>
-      <h1 className="reporttitle">Welcome to the Messaging Page, {id}</h1>
+      <h1 className="reporttitle">
+        {email === "admin@admin.com" ? "Students' Report Messages" : "Report the Problem Here"}, {id}
+      </h1>
       <Logout />
       <GoBack />
     </div>

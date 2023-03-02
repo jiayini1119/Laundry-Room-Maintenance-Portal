@@ -64,9 +64,15 @@ const authUser = asyncHandler(async(req, res) => {
 });
 
 const searchDorms = asyncHandler(async(req, res) => {
-    //query the database
-    const dorm = await Dorm.find({name: req.query.search});
-    res.send(dorm);
+    //query the database to find the dorm
+    try{
+        const dorm = await Dorm.find({name: req.query.search});
+        res.send(dorm);
+    }
+    catch(error){
+        res.status(400);
+        throw new Error(error.message);
+    }
 });
 
 
