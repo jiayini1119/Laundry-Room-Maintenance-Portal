@@ -7,13 +7,16 @@ import "./LoginStyle.css";
 
 const Home = () => {
   const location = useLocation();
-  return(
-    <div>Home Page
-        <h1>Welcome to Laundry Reporter, Poor Bruin {location.state.id}</h1>
-        <Logout/>
+
+  return (
+    <div className='homeheader'>
+      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id}</h1>
+      <Logout /> <Dropdown />
+      <hr></hr>
+      <p>Welcome to laundry in {location.state.dorm}</p>
     </div>
-  )
-}
+  );
+};
 
 export default Home;
 
