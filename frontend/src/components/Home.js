@@ -1,29 +1,22 @@
-import React from "react";
 import axios from "axios";
 import { Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
-import Navbar from "./Navbar";
-import Logout from "./Logout"
+import Logout from "./Logout";
+import Dropdown from "./Dropdown";
+import "./LoginStyle.css";
 
 const Home = () => {
   const location = useLocation();
-  async function getUserAddress() {
-    try {
-      const address = await axios.post("/home", location.state.id);
-      console.log(address);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  
 
   return (
-    <>
-      <Navbar title="Home" />
-      <Typography variant="h3">Welcome to Laundry Reporter, Poor Bruin {location.state.id}!</Typography>
-      <Logout/>
-    </>
-  )
-}
+    <div className='homeheader'>
+      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id}</h1>
+      <Logout /> <Dropdown />
+      <hr></hr>
+      <p>Welcome to laundry in {location.state.dorm}</p>
+    </div>
+  );
+};
 
 export default Home;
+
