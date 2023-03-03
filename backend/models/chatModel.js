@@ -8,6 +8,11 @@ const chatModel = mongoose.Schema(
             ref: "User",
         },
         ],
+        latestConversation:{
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Message",
+
+        },
     },
     {
         timestamps: true,
