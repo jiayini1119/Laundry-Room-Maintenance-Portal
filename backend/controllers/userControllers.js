@@ -1,6 +1,5 @@
 const asyncHandler = require('express-async-handler');
 const User = require("../models/userModel");
-const Dorm = require("../models/dormModel");
 const generateToken = require('../config/generateToken');
 
 const registerUser = asyncHandler(async (req, res) => {
@@ -63,18 +62,5 @@ const authUser = asyncHandler(async(req, res) => {
     }
 });
 
-const searchDorms = asyncHandler(async(req, res) => {
-    //query the database to find the dorm
-    try{
-        const dorm = await Dorm.find({name: req.query.search});
-        res.send(dorm);
-    }
-    catch(error){
-        res.status(400);
-        throw new Error(error.message);
-    }
-});
-
-
-module.exports = {registerUser, authUser, searchDorms}
+module.exports = {registerUser, authUser}
 
