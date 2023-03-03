@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 
 const dormSchema = mongoose.Schema(
     {
-        name: {type: "String", required: true},
+        name: {type: "String", required: true, unique: true},
         washers:[
         {
             type: mongoose.Schema.Types.ObjectId,
