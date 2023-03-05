@@ -33,11 +33,8 @@ const Login = () => {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
-          localStorage.setItem('dorm', res.data.dorm)
-          if (res.data.email==="admin@admin.com") {
-            history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
-          else {
-            history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
+          localStorage.setItem('dorm', res.data.dorm);
+          history("/home");
         })
         .catch(error => {
           if (error.response) {
