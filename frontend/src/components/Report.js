@@ -17,13 +17,13 @@ const Report = () => {
       <h1 className="reporttitle">
         {"Students' Report Messages"}, {id}
       </h1>
-      <Box className="ChatBox"
+      <Box
         sx={{
           width: '100%',
           height: '91.5vh',
-          display: flexbox,
-          justifyContent: "space-evenly",
-          flexDirection: "row",
+          display: 'flex',
+          justifyContent: 'space-between', 
+          flexDirection: 'row',
           padding: '10px',
         }}
       >
@@ -40,10 +40,14 @@ const Report = () => {
           {"Report the Problem Here"}, {id}
         </h1>
         <Box 
-          d="flex" 
-          justifyContent='space-between'
-          w='100%'
-          h='91.5vh'
+          sx={{
+            width: '100%',
+            height: '91.5vh',
+            display: 'flex',
+            justifyContent: 'space-between', 
+            flexDirection: 'row',
+            padding: '10px',
+          }}
         >
           <ChatBox/>
         </Box>
