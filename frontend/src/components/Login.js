@@ -34,6 +34,7 @@ const Login = () => {
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('dorm', res.data.dorm);
+          localStorage.setItem('fullID', res.data._id);
           history("/home");
         })
         .catch(error => {
