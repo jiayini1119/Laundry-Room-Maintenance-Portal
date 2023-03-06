@@ -16,14 +16,15 @@ const Home = () => {
 
   return (
     <div className='homeheader'>
-      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id} <Logout /> <Dropdown /> <Clock /></h1>
-      <hr></hr>
-      <WasherTable/>
-      <p>Welcome to laundry in {location.state.dorm}</p>
-      <h1 className="hometitle">Laundry Reporter, Poor Bruin {id}</h1>
+      <h1 className="hometitle">Laundry Reporter, Poor Bruin {location.state.id} <Logout /> <Dropdown /> </h1>
+      <hr />
+      <Typography fontSize={24} color="textPrimary" fontFamily="Roboto" style={{ display: "inline-block" }}>
+      Welcome to laundry in {location.state.dorm}. Right now the time is: <Clock />
+    </Typography>
+    <WasherTable/>
       <AccessReportPage />
-      <hr></hr>
-      <p>Welcome to laundry in {dorm}</p>
+      <hr />
+      
     </div>
   );
 };
