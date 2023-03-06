@@ -80,7 +80,7 @@ const MyChats = () => {
                 key={chat._id}
               >
                  <Typography fontSize="xs">
-                 { chat.users[0]}
+                 { chat.users[0]} 
                 </Typography>
                 {chat.lastestConversation && (
                   <Typography fontSize="xs">
