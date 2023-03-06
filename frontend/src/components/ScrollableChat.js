@@ -1,11 +1,13 @@
 import React from 'react'
 import ScrollableFeed from "react-scrollable-feed"
+import { isSameSenderMargin, isSameUser } from '../config/ChatLogics'
 
 const ScrollableChat = ({ messages }) => {
   const id = localStorage.getItem('id')
   return (
     <ScrollableFeed>
       {messages && messages.map((m,i)=>
+        <>
         <div style={{display: "flex"}} key={m._id}>
           <span
               style={{
@@ -21,7 +23,9 @@ const ScrollableChat = ({ messages }) => {
             >
               {m.content}
             </span>
-        </div>)}
+        </div>
+        </>
+        )}
     </ScrollableFeed>
   )
 }
