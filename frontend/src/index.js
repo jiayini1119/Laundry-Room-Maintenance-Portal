@@ -6,11 +6,11 @@ import ChatProvider from "./Context/ChatProvider";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
-  <ChatProvider>
   <StrictMode>
+    <ChatProvider>
     <App />
+    </ChatProvider>
   </StrictMode>
-  </ChatProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

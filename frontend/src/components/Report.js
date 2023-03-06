@@ -2,9 +2,8 @@
 import { ChatState } from "../Context/ChatProvider";
 import GoBack from "./GoBack";
 import Box from '@mui/material/Box';
-import MyChats from "./miscellaneous/MyChats";
-import { ChatBox } from "./miscellaneous/ChatBox";
-import { flexbox } from "@mui/system";
+import MyChats from "./MyChats";
+import  ChatBox  from "./ChatBox";
 
 
 const Report = () => {
@@ -17,6 +16,7 @@ const Report = () => {
       <h1 className="reporttitle">
         {"Students' Report Messages"}, {id}
       </h1>
+      <GoBack />
       <Box
         sx={{
           width: '100%',
@@ -30,7 +30,6 @@ const Report = () => {
         <MyChats/> 
         <ChatBox/>
       </Box>
-      <GoBack />
     </div>
   );
   else{
