@@ -8,6 +8,7 @@ import WasherTable from "./WasherTable"
 import "./LoginStyle.css";
 import "./HeaderFeatures.css";
 import AccessReportPage from "./AccessReportPage";
+import uclaLogo from './images/UCLA_Logo.png';
 
 const Home = () => {
   const location = useLocation();
@@ -15,15 +16,17 @@ const Home = () => {
   const dorm = localStorage.getItem('dorm')
 
   return (
-    <div className='homeheader'>
-      <h1 className="hometitle">Laundry Reporter <Clock /><Dropdown /><Logout /> </h1>
+    <div className='homeheader'>   
+      <h1 className="hometitle">
+      Laundry Reporter <Clock /><Dropdown /><Logout /> </h1>
       <hr />
       <Typography fontSize={24} color="textPrimary" fontFamily="Roboto" style={{ display: "inline-block" }}>
-      Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} 
+      Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p 
     </Typography>
     <WasherTable/>
       <AccessReportPage />
-      <hr />     
+      <hr />
+      <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute',right:10, height: '50px', marginBottom: '10px',marginRight: '30px' }} />     
     </div>
   );
 };
