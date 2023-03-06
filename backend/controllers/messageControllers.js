@@ -32,4 +32,23 @@ const sendMessage = asyncHandler(async(req, res) => {
 })
 
 
-module.exports = { sendMessage }
+const allMessages = asyncHandler(async(req, res) => {
+    try{
+        const chatID = req.params.id;
+        //find all messages that belong to a particular chat
+        const messages = await Message.find({chat: chatID})
+        .populate("sender", "name")
+        .populate("chat");
+        if (messages) {
+            return res.status(200).json(messages);
+        }else {
+            return res.status(400).json({ msg: 'Cannot fetch all the messages' });
+        }  
+    }catch(error){
+        res.status(400);
+        throw new Error(error.message);
+    }
+})
+
+
+module.exports = { sendMessage, allMessages }
