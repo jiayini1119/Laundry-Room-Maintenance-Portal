@@ -9,7 +9,7 @@
 
 .Dropdown {
   position: absolute;
-  top: 170%;
+  top: 125%;
   right: 150px;
   transform: translate(0, -100%);
 }
