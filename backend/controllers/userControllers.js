@@ -62,5 +62,27 @@ const authUser = asyncHandler(async(req, res) => {
     }
 });
 
-module.exports = {registerUser, authUser}
+const editUser = asyncHandler(async (req, res) => {
+    const { name, dorm } = req.body;
+
+    const query = { 'name': name };
+    const update = { 'dorm': dorm };
+
+    const user = await User.findOneAndUpdate(query, update);
+
+    if (user) {
+        res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            dorm: user.dorm,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(400);
+        throw new Error("Failed to edit user details.");      
+    }
+})
+
+module.exports = {registerUser, authUser, editUser}
 
