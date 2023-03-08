@@ -15,8 +15,9 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Label from './label';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
+
 
 /*
 function createData(name, status) {
@@ -163,13 +164,31 @@ EnhancedTableToolbar.propTypes = {
 const WasherTable = () => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
   const [rows, setRows] = useState([]);
+  // const dorm = localStorage.getItem('dorm')
+  const location = useLocation();
+  const dorm = location.state.dorm
+  console.log("washer dorm:" + dorm)
+
+  const loadTable = (dorm) => {
+     axios('http://localhost:4000/api/washer/' + dorm)
+       .then(res => setRows(res.data))
+       .catch(err => console.log(err))
+    // axios('http://localhost:4000/api/xxx?search=' + dorm)
+    //   .then(res => {
+    //     debugger
+    //     let dormId = res._id
+    //     axios('http://localhost:4000/api/washer/' + dormId).then(res => {
+    //       debugger;
+    //       setRows(res.data)
+    //     }).catch(err => console.log(err))
+    //   })
+    //   .catch(err => console.log(err))
+  }
 
   useEffect(() => {
-    axios('http://localhost:4000/api/washer/63f82eeb49b26f428cd07d3e')
-      .then(res => setRows(res.data))
-      .catch(err => console.log(err))
+    loadTable('63f82eeb49b26f428cd07d3e');
   }, []);
 
 
