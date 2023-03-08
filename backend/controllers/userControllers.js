@@ -62,5 +62,32 @@ const authUser = asyncHandler(async(req, res) => {
     }
 });
 
-module.exports = {registerUser, authUser}
+const editUser = asyncHandler(async (req, res) => {
+    const { email, dorm } = req.body;
+
+    if (dorm != "Hedrick" && dorm != "Sunset" && dorm != "Rieber" && dorm != "Deneve" && dorm != "Saxon") {
+        res.status(400);
+        throw new Error("Invalid dorm.");
+    }
+
+    const query = { 'email': email };
+    const update = { 'dorm': dorm };
+
+    const user = await User.findOneAndUpdate(query, update);
+
+    if (user) {
+        res.status(200).json({
+            _id: user._id,
+            name: user.name,
+            email: user.email,
+            dorm: user.dorm,
+            token: generateToken(user._id),
+        });
+    } else {
+        res.status(400);
+        throw new Error("Failed to edit user details.");      
+    }
+})
+
+module.exports = {registerUser, authUser, editUser}
 

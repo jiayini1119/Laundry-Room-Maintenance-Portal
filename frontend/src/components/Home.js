@@ -11,6 +11,7 @@ import WasherTable from "./WasherTable"
 import "./LoginStyle.css";
 import "./HeaderFeatures.css";
 import AccessReportPage from "./AccessReportPage";
+import EditProfile from "./EditProfileButton";
 
 import uclaLogo from './images/UCLA_Logo.png';
 
@@ -21,7 +22,7 @@ const Home = () => {
   return (
     <div className="homeheader">
       <h1 className="hometitle">
-        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} /><Logout />
+        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} /><Logout /><EditProfile />
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>
