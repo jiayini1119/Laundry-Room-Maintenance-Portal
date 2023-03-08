@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,8 +15,11 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Label from './label';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
+
+/*
 function createData(name, status) {
   return {
     name,
@@ -49,9 +52,7 @@ const rows = [
   createData('RC004', 'working'),
   createData('RC005', 'working'),
   createData('RC006', 'working'),
-];
-
-
+];*/
 
 const headCells = [
   {
@@ -161,9 +162,35 @@ EnhancedTableToolbar.propTypes = {
 };
 
 const WasherTable = () => {
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(7);
+  const [rows, setRows] = useState([]);
+  // const dorm = localStorage.getItem('dorm')
+  const location = useLocation();
+  const dorm = location.state.dorm
+  console.log("washer dorm:" + dorm)
+
+  const loadTable = (dorm) => {
+     axios('http://localhost:4000/api/washer/' + dorm)
+       .then(res => setRows(res.data))
+       .catch(err => console.log(err))
+    // axios('http://localhost:4000/api/xxx?search=' + dorm)
+    //   .then(res => {
+    //     debugger
+    //     let dormId = res._id
+    //     axios('http://localhost:4000/api/washer/' + dormId).then(res => {
+    //       debugger;
+    //       setRows(res.data)
+    //     }).catch(err => console.log(err))
+    //   })
+    //   .catch(err => console.log(err))
+  }
+
+  useEffect(() => {
+    loadTable('63f82eeb49b26f428cd07d3e');
+  }, []);
+
 
 
   const handleSelectAllClick = (event) => {
@@ -259,8 +286,8 @@ const WasherTable = () => {
                         {row.name}
                       </TableCell>
                       <TableCell align="left">
-                        <Label color={(row.status === 'working' && 'success') || 'error'}>
-                        {row.status}
+                        <Label color={(row.status === true && 'success') || 'error'}>
+                        {row.status === true && 'Working' || 'In Maintenance' }
                         </Label>
                       </TableCell>
                     </TableRow>

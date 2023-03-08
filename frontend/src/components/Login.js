@@ -6,7 +6,7 @@ import "./LoginStyle.css";
 const cheerio = require('cheerio');
 
 const Login = () => {
-  
+
   const history=useNavigate();
 
   const [username, setUsername]=useState();
@@ -33,19 +33,16 @@ const Login = () => {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
-          localStorage.setItem('dorm', res.data.dorm)
-          if (res.data.email==="admin@admin.com") {
-            history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
-          else {
-            history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})}
+          localStorage.setItem('dorm', res.data.dorm);
+          history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
         })
         .catch(error => {
           if (error.response) {
             console.log(error.response.data);
             const $ = cheerio.load(error.response.data.toString());
-            const errorMessage = $('pre').text(); 
+            const errorMessage = $('pre').text();
             const messageWithoutStack = errorMessage.split('at')[0];
-            alert(messageWithoutStack); 
+            alert(messageWithoutStack);
           }
         })
       }
@@ -68,7 +65,7 @@ const Login = () => {
         <div>
           <input type="password" onChange={(e)=>setPassword(e.target.value)} placeholder='password' id="password" name="password"/>
         </div>
-        
+
       <button className='authSubmit' onClick={handleSubmit}> Submit </button>
       <br/>
       <p className='remind'>Not signed up?</p>

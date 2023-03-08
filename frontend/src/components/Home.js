@@ -1,7 +1,9 @@
+
 import axios from "axios";
 import React, { useState } from 'react';
 import { Typography } from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
+
 import Logout from "./Logout";
 import Dropdown from "./Dropdown";
 import Clock from "./Clock";
@@ -9,6 +11,7 @@ import WasherTable from "./WasherTable"
 import "./LoginStyle.css";
 import "./HeaderFeatures.css";
 import AccessReportPage from "./AccessReportPage";
+
 import uclaLogo from './images/UCLA_Logo.png';
 
 const Home = () => {

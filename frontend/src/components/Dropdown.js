@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Select, MenuItem, FormHelperText, FormControl} from '@mui/material';
-import { useLocation, useNavigate} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 function Dropdown({ setBgColor }) {
   const location = useLocation();
@@ -31,7 +32,7 @@ function Dropdown({ setBgColor }) {
         setBgColor("#fff");
         break;
     }
-  };
+    };
 
   return (
     <div className="Dropdown">
