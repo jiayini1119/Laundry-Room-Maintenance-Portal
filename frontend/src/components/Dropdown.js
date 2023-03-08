@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { Select, MenuItem, FormHelperText, FormControl} from '@mui/material';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function Dropdown() {
-  const dorm = localStorage.getItem('dorm')
+  // const dorm = localStorage.getItem('dorm')
+  var location = useLocation()
+  const dorm = location.state.dorm
   const [value, setValue] = useState(dorm); // Set initial value
-  
+  const history = useNavigate();
+
   const handleChange = (event) => {
     setValue(event.target.value); // Update value when an option is selected
+    localStorage.setItem('dorm', event.target.value)
+    history("/home", {state: {id: location.state.id, dorm: event.target.value}});
   };
 
   return (
