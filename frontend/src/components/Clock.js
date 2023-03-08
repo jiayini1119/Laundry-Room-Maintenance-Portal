@@ -11,10 +11,8 @@ const Clock = () => {
 
   setInterval(updateTime, 1000);
 
-  return(
-    <div>
-      <h1 className = "Clock">{currentTime}</h1>
-    </div>
+  return(  
+      <h1 className = "Clock" style={{ fontSize: "22px" }}>{currentTime}</h1>
   )
 }
 export default Clock;
