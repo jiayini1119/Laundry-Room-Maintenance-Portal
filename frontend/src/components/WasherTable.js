@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -16,7 +16,9 @@ import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Label from './label';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+/*
 function createData(name, status) {
   return {
     name,
@@ -49,9 +51,7 @@ const rows = [
   createData('RC004', 'working'),
   createData('RC005', 'working'),
   createData('RC006', 'working'),
-];
-
-
+];*/
 
 const headCells = [
   {
@@ -161,9 +161,17 @@ EnhancedTableToolbar.propTypes = {
 };
 
 const WasherTable = () => {
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rows, setRows] = useState([]);
+
+  useEffect(() => {
+    axios('http://localhost:4000/api/washer/63f82eeb49b26f428cd07d3e')
+      .then(res => setRows(res.data))
+      .catch(err => console.log(err))
+  }, []);
+
 
 
   const handleSelectAllClick = (event) => {
@@ -259,8 +267,8 @@ const WasherTable = () => {
                         {row.name}
                       </TableCell>
                       <TableCell align="left">
-                        <Label color={(row.status === 'working' && 'success') || 'error'}>
-                        {row.status}
+                        <Label color={(row.status === true && 'success') || 'error'}>
+                        {row.status === true && 'Working' || 'In Maintenance' }
                         </Label>
                       </TableCell>
                     </TableRow>
