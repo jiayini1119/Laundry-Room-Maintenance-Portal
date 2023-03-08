@@ -63,9 +63,14 @@ const authUser = asyncHandler(async(req, res) => {
 });
 
 const editUser = asyncHandler(async (req, res) => {
-    const { name, dorm } = req.body;
+    const { email, dorm } = req.body;
 
-    const query = { 'name': name };
+    if (dorm != "Hedrick" && dorm != "Sunset" && dorm != "Rieber" && dorm != "Deneve" && dorm != "Saxon") {
+        res.status(400);
+        throw new Error("Invalid dorm.");
+    }
+
+    const query = { 'email': email };
     const update = { 'dorm': dorm };
 
     const user = await User.findOneAndUpdate(query, update);
