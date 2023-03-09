@@ -166,32 +166,24 @@ const WasherTable = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(7);
   const [rows, setRows] = useState([]);
-  // const dorm = localStorage.getItem('dorm')
   const location = useLocation();
   const dorm = location.state.dorm
-  console.log("washer dorm:" + dorm)
-
-  const loadTable = (dorm) => {
-     axios('http://localhost:4000/api/washer/' + dorm)
-       .then(res => setRows(res.data))
-       .catch(err => console.log(err))
-    // axios('http://localhost:4000/api/xxx?search=' + dorm)
-    //   .then(res => {
-    //     debugger
-    //     let dormId = res._id
-    //     axios('http://localhost:4000/api/washer/' + dormId).then(res => {
-    //       debugger;
-    //       setRows(res.data)
-    //     }).catch(err => console.log(err))
-    //   })
-    //   .catch(err => console.log(err))
-  }
 
   useEffect(() => {
-    loadTable('63f82eeb49b26f428cd07d3e');
-  }, []);
+    loadTable(dorm);
+  }, [dorm]); //[dorm] invoke useEffect
 
+  const loadTable = (dorm) => {
 
+    axios('http://localhost:4000/api/washer?search=' + dorm)
+      .then(res => {
+        let dormId = res.data[0]._id
+        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
+          setRows(res.data)
+        }).catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -239,7 +231,7 @@ const WasherTable = () => {
 
   return (
     <Box sx={{ width: '100%'}}>
-      <Paper elevation={10} sx={{ width: '80%', m: 15}}>
+      <Paper elevation={10} sx={{ width: '80%', m:15}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -306,7 +298,7 @@ const WasherTable = () => {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[7, 9, 11]}
+          rowsPerPageOptions={[5, 9, 11]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
