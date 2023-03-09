@@ -164,7 +164,7 @@ EnhancedTableToolbar.propTypes = {
 const WasherTable = () => {
   const [selected, setSelected] = useState([]);
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(7);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   const location = useLocation();
   const dorm = location.state.dorm
