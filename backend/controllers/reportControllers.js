@@ -5,6 +5,7 @@ const getAllReports = asyncHandler(async(req, res) => {
     //For the staff: get all the reports from the students
     try{
         Chat.find({ 'users': req.user._id })
+        .populate("users", "name")
         .then(result => 
             res.status(200).send(result)
         );

@@ -32,13 +32,14 @@ const MyChats = () => {
     // eslint-disable-next-line
   }, []);
 
+
   return (
     <Box
       display={{ xs: selectedChat ? 'none' : 'flex', md: 'flex' }}
       flexDirection="column"
       alignItems="center"
       padding={3}
-      bgcolor="white"
+      bgcolor="#e8f4fd"
       width={{ xs: '100%', md: '31%' }}
       borderRadius={12}
       border={1}
@@ -54,7 +55,7 @@ const MyChats = () => {
       justifyContent="space-between"
       alignItems="center"
     >
-      My Chats
+      Report from Students
     </Box>
       <Box
         display="flex"
@@ -72,7 +73,7 @@ const MyChats = () => {
               <Box
                 onClick={()=> {setSelectedChat(chat);}}
                 cursor= "pointer"
-                backgroundColor = {selectedChat === chat ? "#38B2AC" : "#E8E8E8"}
+                backgroundColor = {selectedChat === chat ? "#ffc107" : "#5393ff"}
                 color={selectedChat === chat ? "white" : "black"}
                 px={3}
                 py={2}
@@ -80,7 +81,8 @@ const MyChats = () => {
                 key={chat._id}
               >
                  <Typography fontSize="xs">
-                 { chat.users[0]} 
+                  Click to access a message from{' '}
+                  {getSender(id, chat.users)}
                 </Typography>
                 {chat.lastestConversation && (
                   <Typography fontSize="xs">

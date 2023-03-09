@@ -6,17 +6,52 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 
 import { ChatState } from "../Context/ChatProvider";
+import { Toast } from '@chakra-ui/react';
 const ENDPOINT = "http://localhost:4000"; 
 var socket, selectedChatCompare;
 
-const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+const SingleChatStudent = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
-  
+  const { chats, setChats } = ChatState();
+  const [loadingChat, setLoadingChat] = useState()
   const token = localStorage.getItem('token');
   
   const { selectedChat, setSelectedChat} = ChatState();
+
+
+  const accessChat = async() => {
+    try{
+        setLoadingChat(true);
+
+        const config = {
+            headers: {
+                "Content-type": "application/json",
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const { data } = await axios.post(
+            "http://localhost:4000/api/report",
+            {},
+            config
+          );
+
+        setSelectedChat(data);
+        setLoadingChat(false);
+    }catch(error){
+        Toast({
+            title: "Error Occured!",
+            description: "Failed to Load the Search Results",
+            status: "error",
+            duration: 5000,
+            isClosable: true,
+            position: "bottom-left",
+        });
+    }
+}
+
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -73,7 +108,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     setNewMessage(e.target.value);
   };
 
-
+  useEffect(() => {
+    accessChat();
+  }, []);
 
   useEffect(() => {
     fetchMessages();
@@ -155,4 +192,4 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   );
 };
 
-export default SingleChat;
+export default SingleChatStudent

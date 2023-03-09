@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { alpha } from '@mui/material/styles';
 import Box from '@mui/material/Box';
@@ -15,8 +15,11 @@ import Paper from '@mui/material/Paper';
 import Checkbox from '@mui/material/Checkbox';
 import Button from '@mui/material/Button';
 import Label from './label';
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import axios from "axios";
 
+
+/*
 function createData(name, status) {
   return {
     name,
@@ -49,9 +52,7 @@ const rows = [
   createData('RC004', 'working'),
   createData('RC005', 'working'),
   createData('RC006', 'working'),
-];
-
-
+];*/
 
 const headCells = [
   {
@@ -161,10 +162,28 @@ EnhancedTableToolbar.propTypes = {
 };
 
 const WasherTable = () => {
-  const [selected, setSelected] = React.useState([]);
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+  const [selected, setSelected] = useState([]);
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rows, setRows] = useState([]);
+  const location = useLocation();
+  const dorm = location.state.dorm
 
+  useEffect(() => {
+    loadTable(dorm);
+  }, [dorm]); //[dorm] invoke useEffect
+
+  const loadTable = (dorm) => {
+
+    axios('http://localhost:4000/api/washer?search=' + dorm)
+      .then(res => {
+        let dormId = res.data[0]._id
+        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
+          setRows(res.data)
+        }).catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -212,7 +231,7 @@ const WasherTable = () => {
 
   return (
     <Box sx={{ width: '100%'}}>
-      <Paper elevation={10} sx={{ width: '80%', m: 15}}>
+      <Paper elevation={10} sx={{ width: '80%', m:15}}>
         <EnhancedTableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
@@ -259,8 +278,8 @@ const WasherTable = () => {
                         {row.name}
                       </TableCell>
                       <TableCell align="left">
-                        <Label color={(row.status === 'working' && 'success') || 'error'}>
-                        {row.status}
+                        <Label color={(row.status === true && 'success') || 'error'}>
+                        {row.status === true && 'Working' || 'In Maintenance' }
                         </Label>
                       </TableCell>
                     </TableRow>
@@ -279,7 +298,7 @@ const WasherTable = () => {
           </Table>
         </TableContainer>
         <TablePagination
-          rowsPerPageOptions={[7, 9, 11]}
+          rowsPerPageOptions={[5, 9, 11]}
           component="div"
           count={rows.length}
           rowsPerPage={rowsPerPage}
