@@ -120,7 +120,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           </IconButton>
           {messages && (
             <Stack direction="row" alignItems="center">
-              {selectedChat.users[0]}
+              {selectedChat.users[0].name}
             </Stack>
           )}
         </Typography>
