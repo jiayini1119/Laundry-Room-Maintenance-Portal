@@ -2,11 +2,14 @@ import React, { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
 import App from "./App";
+import ChatProvider from "./Context/ChatProvider";
 
 const root = createRoot(document.getElementById("root"));
 root.render(
   <StrictMode>
+    <ChatProvider>
     <App />
+    </ChatProvider>
   </StrictMode>
 );
 
