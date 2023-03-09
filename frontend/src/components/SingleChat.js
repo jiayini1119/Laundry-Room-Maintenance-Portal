@@ -71,23 +71,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
-
-    // if (!socketConnected) return;
-
-    // if (!typing) {
-    //   setTyping(true);
-    //   socket.emit("typing", selectedChat._id);
-    // }
-    // let lastTypingTime = new Date().getTime();
-    // var timerLength = 3000;
-    // setTimeout(() => {
-    //   var timeNow = new Date().getTime();
-    //   var timeDiff = timeNow - lastTypingTime;
-    //   if (timeDiff >= timerLength && typing) {
-    //     socket.emit("stop typing", selectedChat._id);
-    //     setTyping(false);
-    //   }
-    // }, timerLength);
   };
 
 
@@ -149,6 +132,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
               variant="filled"
               color="secondary"
               placeholder="Enter a message.."
+              InputProps={{
+                inputProps: {
+                  maxLength: 80,
+                },
+              }}
               value={newMessage}
               onChange={typingHandler}
             />

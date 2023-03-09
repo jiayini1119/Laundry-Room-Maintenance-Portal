@@ -33,8 +33,8 @@ const Login = () => {
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
-          localStorage.setItem('dorm', res.data.dorm);
-          history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
+          localStorage.setItem('fullID', res.data._id);
+          history("/home");
         })
         .catch(error => {
           if (error.response) {
