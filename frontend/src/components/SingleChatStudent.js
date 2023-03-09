@@ -17,41 +17,16 @@ const SingleChatStudent = ({ fetchAgain, setFetchAgain }) => {
   const { chats, setChats } = ChatState();
   const [loadingChat, setLoadingChat] = useState()
   const token = localStorage.getItem('token');
+
+  const chatData = JSON.parse(localStorage.getItem('chatData'));
+
+  console.log(chatData)
   
   const { selectedChat, setSelectedChat} = ChatState();
 
-
-  const accessChat = async() => {
-    try{
-        setLoadingChat(true);
-
-        const config = {
-            headers: {
-                "Content-type": "application/json",
-                Authorization: `Bearer ${token}`,
-            },
-        };
-
-        const { data } = await axios.post(
-            "http://localhost:4000/api/report",
-            {},
-            config
-          );
-
-        setSelectedChat(data);
-        setLoadingChat(false);
-    }catch(error){
-        Toast({
-            title: "Error Occured!",
-            description: "Failed to Load the Search Results",
-            status: "error",
-            duration: 5000,
-            isClosable: true,
-            position: "bottom-left",
-        });
-    }
-}
-
+  useEffect(() => {
+    setSelectedChat(chatData); 
+  }, []);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -64,7 +39,6 @@ const SingleChatStudent = ({ fetchAgain, setFetchAgain }) => {
       };
 
       setLoading(true);
-
       const { data } = await axios.get(
         `http://localhost:4000/api/message/${selectedChat._id}`,
         config
@@ -107,10 +81,6 @@ const SingleChatStudent = ({ fetchAgain, setFetchAgain }) => {
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
   };
-
-  useEffect(() => {
-    accessChat();
-  }, []);
 
   useEffect(() => {
     fetchMessages();
