@@ -84,7 +84,7 @@ const MyChats = () => {
                 </Typography>
                 {chat.lastestConversation && (
                   <Typography fontSize="xs">
-                    <b>{chat.users[0]} : </b>
+                    <b> Response: </b>
                     {chat.lastestConversation.content.length > 50
                       ? chat.lastestConversation.content.substring(0, 51) + "..."
                       : chat.lastestConversation.content}
