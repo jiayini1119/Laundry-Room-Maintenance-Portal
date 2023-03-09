@@ -34,7 +34,8 @@ const Login = () => {
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('fullID', res.data._id);
-          history("/home");
+          localStorage.setItem('dorm', res.data.dorm);
+          history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
         })
         .catch(error => {
           if (error.response) {
