@@ -27,6 +27,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     chatData = JSON.parse(localStorage.getItem('chatData'));
   }
 
+  // set up and connect
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", fullID);
+    socket.on("connected", () => setSocketConnected(true));  
+  }, []);
+
   useEffect(() => {
     setSelectedChat(chatData); 
   }, []);
@@ -49,7 +56,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       );
       setMessages(data);
       setLoading(false);
-
+      // join the chat
+      socket.emit("join chat", selectedChat._id)
     } catch (error) {
       alert("Failed to Load the Messages");
       return;
@@ -74,6 +82,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
           config
         );
+        socket.emit('new message', data)
         setMessages([...messages, data]);
       } catch (error) {
         alert("Failed to Send Message");
@@ -81,13 +90,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }
   };
-
-
-  useEffect(() => {
-    socket = io(ENDPOINT);
-    socket.emit("setup", fullID);
-    socket.on("connected", () => setSocketConnected(true));  
-  }, []);
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);
@@ -97,7 +99,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     fetchMessages();
+
   }, [selectedChat]);
+
+
+  useEffect(()=>{
+    socket.on("message received", (newMessageReceived) => {
+      console.log(newMessageReceived)
+      setMessages([...messages, newMessageReceived])
+    });  
+  })
 
   return (
     <>
