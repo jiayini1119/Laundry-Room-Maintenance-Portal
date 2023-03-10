@@ -13,8 +13,18 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [newMessage, setNewMessage] = useState("");
   
   const token = localStorage.getItem('token');
+  const email = localStorage.getItem('email')
   
   const { selectedChat, setSelectedChat} = ChatState();
+  var chatData;
+
+  if (email !== "admin@admin.com"){
+    chatData = JSON.parse(localStorage.getItem('chatData'));
+  }
+
+  useEffect(() => {
+    setSelectedChat(chatData); 
+  }, []);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
