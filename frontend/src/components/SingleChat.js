@@ -1,13 +1,11 @@
 import { Box, CircularProgress, FormControl, IconButton, Stack, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { getSender, getSenderFull } from "../config/ChatLogics";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:4000"; 
-var socket, selectedChatCompare;
+
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
