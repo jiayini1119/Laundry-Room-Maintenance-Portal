@@ -12,9 +12,14 @@ const Login = () => {
   const [username, setUsername]=useState();
   const [email, setEmail]=useState();
   const [password, setPassword]=useState();
+  const [userType, setUserType] = useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!userType) {
+      alert("Please enter your user type");
+      return;
+    }
 
     if (!email) {
       alert("Please enter your email");
@@ -28,7 +33,7 @@ const Login = () => {
 
     else {
       try {
-        await axios.post("http://localhost:4000/api/user/login", {username, email, password})
+        await axios.post("http://localhost:4000/api/user/login", {username, email, password, userType})
         .then(res=>{
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
@@ -57,6 +62,12 @@ const Login = () => {
     <div className='LoginPage'>
       <form className='authForm' method='post'>
         <h1 className='authHead'>Login</h1>
+        <div>
+          <input type="radio" id="student" name="userType" value="student" onChange={(e)=>setUserType(e.target.value)} />
+          <label for="student">Student</label><br />
+          <input type="radio" id="staff" name="userType" value="staff" onChange={(e)=>setUserType(e.target.value)} />
+          <label for="staff">Staff</label><br />
+        </div>
         <div>
           <input type="username" onChange={(e)=>setUsername(e.target.value)} placeholder='username' id="username" name="username"/>
         </div>
