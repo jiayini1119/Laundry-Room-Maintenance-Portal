@@ -1,13 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import { ChatState } from '../Context/ChatProvider';
 import axios from "axios";
 import Box from '@mui/material/Box';
 import ChatLoading from './ChatLoading';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { getSender } from "../config/ChatLogics";
+import ScrollableFeed from "react-scrollable-feed"
 
 const MyChats = () => {
+  const containerRef = useRef(null);
   const id = localStorage.getItem('id');
   const token = localStorage.getItem('token');
   const { selectedChat, setSelectedChat, chats,setChats } = ChatState();
@@ -40,7 +41,7 @@ const MyChats = () => {
       alignItems="center"
       padding={3}
       bgcolor="#e8f4fd"
-      width={{ xs: '100%', md: '31%' }}
+      width={{ xs: '80%', md: '31%' }}
       borderRadius={12}
       border={1}
     >
@@ -68,7 +69,16 @@ const MyChats = () => {
         overflowY = "hidden"
       >
         {chats ? (
-          <Stack overflowY = "scroll" spacing={2}>
+          // <Stack overflowY = "scroll" spacing={2}>
+          <ScrollableFeed>
+            <div
+            ref={containerRef}
+            style={{
+              maxHeight: "80vh", 
+              overflowY: "scroll",
+              scrollPaddingBlock: "2px",
+              marginBottom: "2px",       
+            }}>
             {chats.map((chat) => (
               <Box
                 onClick={()=> {setSelectedChat(chat);}}
@@ -79,6 +89,7 @@ const MyChats = () => {
                 py={2}
                 borderRadius={10}
                 key={chat._id}
+                marginBottom={2}
               >
                  <Typography fontSize="xs">
                   Click to access a message from{' '}
@@ -86,7 +97,7 @@ const MyChats = () => {
                 </Typography>
                 {chat.lastestConversation && (
                   <Typography fontSize="xs">
-                    <b>{chat.users[0]} : </b>
+                    <b> Response: </b>
                     {chat.lastestConversation.content.length > 50
                       ? chat.lastestConversation.content.substring(0, 51) + "..."
                       : chat.lastestConversation.content}
@@ -94,7 +105,9 @@ const MyChats = () => {
                 )}
               </Box>
             ))}
-          </Stack>
+            </div>
+            </ScrollableFeed>
+        
   
         ) : <ChatLoading/> }
       </Box>

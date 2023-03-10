@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import ScrollableFeed from "react-scrollable-feed"
-import { isSameSenderMargin, isSameUser } from "../config/ChatLogics"
+import { isSameSenderMargin } from "../config/ChatLogics"
 
 const ScrollableChat = ({ messages }) => {
   const id = localStorage.getItem('fullID');
@@ -15,7 +15,7 @@ const ScrollableChat = ({ messages }) => {
       <div
         ref={containerRef}
         style={{
-          maxHeight: "60vh", // or any value that fits your needs
+          maxHeight: "60vh", 
           overflowY: "auto",
         }}
       >

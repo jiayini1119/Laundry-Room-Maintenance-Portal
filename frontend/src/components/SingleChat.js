@@ -1,22 +1,42 @@
 import { Box, CircularProgress, FormControl, IconButton, Stack, TextField, Typography } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import { getSender, getSenderFull } from "../config/ChatLogics";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 
 import { ChatState } from "../Context/ChatProvider";
-const ENDPOINT = "http://localhost:4000"; 
+import io from "socket.io-client";
+const ENDPOINT = "http://localhost:4000"
+
 var socket, selectedChatCompare;
+
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
-  
   const token = localStorage.getItem('token');
+  const email = localStorage.getItem('email')
+  const fullID = localStorage.getItem('fullID')
+  const [socketConnected, setSocketConnected] = useState(false)
   
   const { selectedChat, setSelectedChat} = ChatState();
+  var chatData;
+
+  if (email !== "admin@admin.com"){
+    chatData = JSON.parse(localStorage.getItem('chatData'));
+  }
+
+  // set up and connect
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", fullID);
+    socket.on("connected", () => setSocketConnected(true));  
+  }, []);
+
+  useEffect(() => {
+    setSelectedChat(chatData); 
+  }, []);
 
   const fetchMessages = async () => {
     if (!selectedChat) return;
@@ -36,7 +56,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       );
       setMessages(data);
       setLoading(false);
-
+      // join the chat
+      socket.emit("join chat", selectedChat._id)
     } catch (error) {
       alert("Failed to Load the Messages");
       return;
@@ -61,6 +82,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
           config
         );
+        socket.emit('new message', data)
         setMessages([...messages, data]);
       } catch (error) {
         alert("Failed to Send Message");
@@ -77,7 +99,16 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     fetchMessages();
+
   }, [selectedChat]);
+
+
+  useEffect(()=>{
+    socket.on("message received", (newMessageReceived) => {
+      console.log(newMessageReceived)
+      setMessages([...messages, newMessageReceived])
+    });  
+  })
 
   return (
     <>
