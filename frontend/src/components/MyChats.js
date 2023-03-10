@@ -3,11 +3,9 @@ import { ChatState } from '../Context/ChatProvider';
 import axios from "axios";
 import Box from '@mui/material/Box';
 import ChatLoading from './ChatLoading';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { getSender } from "../config/ChatLogics";
 import ScrollableFeed from "react-scrollable-feed"
-import { borderRadius } from '@mui/system';
 
 const MyChats = () => {
   const containerRef = useRef(null);
