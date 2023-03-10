@@ -5,15 +5,20 @@ import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
 
 import { ChatState } from "../Context/ChatProvider";
+import io from "socket.io-client";
+const ENDPOINT = "http://localhost:4000"
+
+var socket, selectedChatCompare;
 
 
 const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
-  
   const token = localStorage.getItem('token');
   const email = localStorage.getItem('email')
+  const fullID = localStorage.getItem('fullID')
+  const [socketConnected, setSocketConnected] = useState(false)
   
   const { selectedChat, setSelectedChat} = ChatState();
   var chatData;
@@ -76,6 +81,13 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       }
     }
   };
+
+
+  useEffect(() => {
+    socket = io(ENDPOINT);
+    socket.emit("setup", fullID);
+    socket.on("connected", () => setSocketConnected(true));  
+  }, []);
 
   const typingHandler = (e) => {
     setNewMessage(e.target.value);

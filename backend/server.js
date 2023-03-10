@@ -31,4 +31,22 @@ app.post("/home", cors(), async(req, res) => {
 });
 
 const PORT = process.env.PORT
-app.listen(PORT, console.log("Server successfully started on PORT", PORT));
+const server = app.listen(PORT, console.log("Server successfully started on PORT", PORT));
+
+//set up socket.io
+const io = require('socket.io')(server, {
+  pingTimeout: 60000,
+  cors: {
+      origin: "http://localhost:3000",
+  }
+})
+
+//connect
+io.on("connection", (socket) => {
+  console.log("Connected to socket.io");
+  //set up for the user
+  socket.on("setup", (userData) => {
+    socket.join(userData);
+    socket.emit("user connected");
+    });
+});
