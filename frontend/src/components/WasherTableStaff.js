@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { Select, FormControl, MenuItem, FormHelperText, alpha, Box, Button, Checkbox, FormGroup, FormControlLabel, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Toolbar, Typography } from '@mui/material';
+import { Switch, Select, FormControl, MenuItem, FormHelperText, alpha, Box, Button, FormGroup, FormControlLabel, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TablePagination, TableRow, Toolbar, Typography } from '@mui/material';
 import Label from './label';
-import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const headCells = [
@@ -22,7 +21,7 @@ const headCells = [
 
 const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
   return (
-    <FormControl style={{width: '100%'}}>
+    <FormControl style={{ width: '30%' }}>
       <Select value={statusValue} onChange={handleStatusFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="working">Working</MenuItem>
@@ -35,7 +34,7 @@ const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
 
 const DormFilterDropdown = ({ dormValue, handleDormFilter }) => {
   return (
-    <FormControl style={{width: '100%'}}>
+    <FormControl style={{ width: '20%' }}>
       <Select value={dormValue} onChange={handleDormFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="Hedrick">Hedrick</MenuItem>
@@ -49,28 +48,17 @@ const DormFilterDropdown = ({ dormValue, handleDormFilter }) => {
   );
 };
 
+
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, numSelected, rowCount } = props;
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox" style={{ width: '10%' }}>
-          <Checkbox
-            color="primary"
-            indeterminate={numSelected > 0 && numSelected < rowCount}
-            checked={rowCount > 0 && numSelected === rowCount}
-            onChange={onSelectAllClick}
-            inputProps={{
-              'aria-label': 'select all washers',
-            }}
-          />
-        </TableCell>
         {headCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={'left'}
+            align={'center'}
             padding={'normal'}
-            style={{ width: '10%' }}
+            style={{ width: '50%' }}
           >
             {headCell.label}
           </TableCell>
@@ -88,17 +76,12 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-  // const history = useNavigate()
-
-  // const handleClickReport = () => {
-  //   history("/home/report")
-  // }
 
   return (
     <Toolbar
       sx={{
-      pl: { sm: 1 },
-      pr: { xs: 8, sm: 5 },
+        pl: { sm: 1 },
+        pr: { xs: 8, sm: 5 },
         ...(numSelected > 0 && {
           bgcolor: (theme) =>
             alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
@@ -120,22 +103,16 @@ function EnhancedTableToolbar(props) {
           variant="h6"
           id="tableTitle"
           component="div"
-          //color={'orange'}
+          align="center"
         >
           Washer Table
         </Typography>
       )}
-
+      <FormGroup style={{ width: '25%' }}>
+        <FormControlLabel control={<Switch checked={props.checked} onChange={props.handleSwitchChange} size="small" />} label="Allow changes" />
+      </FormGroup>
       <StatusFilterDropdown statusValue={props.statusValue} handleStatusFilter={props.handleStatusFilter} />
       <DormFilterDropdown dormValue={props.dormValue} handleDormFilter={props.handleDormFilter} />
-
-      {/* {numSelected > 0 ? (
-        <Button variant="contained" onClick={handleClickReport}>
-          Report for Maintenance
-        </Button>
-      ) : (
-        <Button variant="cotained">Select to Report</Button>
-      )} */}
     </Toolbar>
   );
 }
@@ -149,15 +126,22 @@ const WasherTableStaff = () => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
+  const [call, setCall] = useState(false);
   const [statusValue, setStatusValue] = useState("maintenance");
-  const [dormValue, setDormValue] = useState("all")
+  const [dormValue, setDormValue] = useState("all");
+  const [allowStatusChange, setAllowStatusChange] = useState(false);
 
+  // settings available in Washer table header
   const onStatusFilterChange = (event) => {
     setStatusValue(event.target.value)
   }
 
   const onDormFilterChange = (event) => {
     setDormValue(event.target.value)
+  }
+
+  const onSwitchChange = (event) => {
+    setAllowStatusChange(event.target.checked)
   }
 
   const filterWasher = (data, status) => {
@@ -176,22 +160,38 @@ const WasherTableStaff = () => {
   }
 
   useEffect(() => {
-    if (dormValue === "all") {
-      axios('http://localhost:4000/api/washer/getall')
-        .then(res => {
-          setRows(filterWasher(res.data, statusValue));
-        }).catch(err => console.log(err))
-    } else {
-      axios('http://localhost:4000/api/washer/search?search=' + dormValue)
-        .then(res => {
-          let dormId = res.data[0]._id
-          axios('http://localhost:4000/api/washer/id/' + dormId).then(res => {
+    if (call) {
+      if (dormValue === "all") {
+        axios('http://localhost:4000/api/washer/getall')
+          .then(res => {
             setRows(filterWasher(res.data, statusValue));
           }).catch(err => console.log(err))
-        })
-        .catch(err => console.log(err))
+      } else {
+        axios('http://localhost:4000/api/washer/search?search=' + dormValue)
+          .then(res => {
+            let dormId = res.data[0]._id
+            axios('http://localhost:4000/api/washer/id/' + dormId).then(res => {
+              setRows(filterWasher(res.data, statusValue));
+            }).catch(err => console.log(err))
+          })
+          .catch(err => console.log(err))
+      }
+      setCall(false);
     }
-  }, [statusValue, dormValue]);
+  }, [call]);
+
+  useEffect(() => {
+    setCall(true);
+  }, [statusValue, dormValue])
+
+  const handleChangeStatus = (washerId) => {
+    axios.put('http://localhost:4000/api/washer/id/' + washerId)
+      .then(() => {
+        setRows([...rows]);
+        setCall(true);
+      })
+      .catch(err => console.log(err))
+  }
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
@@ -200,26 +200,6 @@ const WasherTableStaff = () => {
       return;
     }
     setSelected([]);
-  };
-
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
-    let newSelected = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
-      );
-    }
-
-    setSelected(newSelected);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -238,14 +218,16 @@ const WasherTableStaff = () => {
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
   return (
-    <Box sx={{ width: '100%'}}>
-      <Paper elevation={10} sx={{ width: '80%', m:15}}>
+    <Box sx={{ width: '100%' }}>
+      <Paper elevation={10} sx={{ width: '80%', m: 15 }}>
         <EnhancedTableToolbar
           numSelected={selected.length}
           statusValue={statusValue}
           handleStatusFilter={onStatusFilterChange}
           dormValue={dormValue}
           handleDormFilter={onDormFilterChange}
+          handleSwitchChange={onSwitchChange}
+          checked={allowStatusChange}
         />
         <TableContainer>
           <Table
@@ -267,34 +249,27 @@ const WasherTableStaff = () => {
 
                   return (
                     <TableRow
-                      hover
-                      onClick={(event) => handleClick(event, row.name)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
                       tabIndex={-1}
                       key={row.name}
-                      selected={isItemSelected}
                     >
-                      <TableCell padding="checkbox">
-                        <Checkbox
-                          color="primary"
-                          checked={isItemSelected}
-                          inputProps={{
-                            'aria-labelledby': labelId,
-                          }}
-                        />
-                      </TableCell>
                       <TableCell
                         id={labelId}
                         scope="row"
                         padding="none"
+                        align={'center'}
+                        style={{ width: '50%' }}
                       >
                         {row.name}
                       </TableCell>
-                      <TableCell align="left">
-                        <Label color={(row.status === true && 'success') || 'error'}>
-                        {row.status === true && 'Working' || 'In Maintenance' }
-                        </Label>
+                      <TableCell align="center">
+                        {allowStatusChange ?
+                          <Button onClick={() => handleChangeStatus(row._id)} color={(row.status === true && 'success') || 'error'}>
+                            {row.status === true && 'Working' || 'In Maintenance'}
+                          </Button> :
+                          <Label color={(row.status === true && 'success') || 'error'}>
+                            {row.status === true && 'Working' || 'In Maintenance'}
+                          </Label>
+                        }
                       </TableCell>
                     </TableRow>
                   );
