@@ -22,7 +22,11 @@ const Home = () => {
   return (
     <div className="homeheader">
       <h1 className="hometitle">
-        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} /><Logout /><EditProfile />
+        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
+        <div className="navButtonContainer">
+          <EditProfile />
+          <Logout />
+        </div>
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>

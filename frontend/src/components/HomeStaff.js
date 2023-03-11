@@ -11,7 +11,6 @@ import WasherTableStaff from "./WasherTableStaff"
 import "./LoginStyle.css";
 import "./HeaderFeatures.css";
 import AccessReportPage from "./AccessReportPage";
-import EditProfile from "./EditProfileButton";
 
 import uclaLogo from './images/UCLA_Logo.png';
 
@@ -24,12 +23,14 @@ const HomeStaff = () => {
       <h1 className="hometitle">
         Laundry Reporter <Clock />
         {/* <Dropdown setBgColor={setBgColor} /> */}
-        <Logout /><EditProfile />
+        <div className="navButtonContainer">
+          <Logout />
+        </div>
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>
       <Typography fontSize={24} color='textPrimary' fontFamily='Roboto' style={{ display: 'inline-block' }}>
-        Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
+        Welcome to Laundry Reporter, poor Staff {location.state.id} :p
       </Typography>
       <WasherTableStaff />
       <AccessReportPage />

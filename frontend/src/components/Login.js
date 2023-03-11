@@ -63,11 +63,20 @@ const Login = () => {
     <div className='LoginPage'>
       <form className='authForm' method='post'>
         <h1 className='authHead'>Login</h1>
-        <div>
+        {/* referenced from Metty on https://codepen.io/Metty/pen/MWjOavR */}
+        <div className="buttonWrapper">
           <input type="radio" id="student" name="userType" value="student" onChange={(e)=>setUserType(e.target.value)} />
-          <label for="student">Student</label><br />
+          <label htmlFor="student" className="option student">
+            <div className="dot"></div>
+            <span>student</span>
+          </label>
+          <br />
           <input type="radio" id="staff" name="userType" value="staff" onChange={(e)=>setUserType(e.target.value)} />
-          <label for="staff">Staff</label><br />
+          <label htmlFor="staff" className="option staff">
+            <div className="dot"></div>
+            <span>staff</span>
+            </label>
+          <br />
         </div>
         <div>
           <input type="username" onChange={(e)=>setUsername(e.target.value)} placeholder='username' id="username" name="username"/>

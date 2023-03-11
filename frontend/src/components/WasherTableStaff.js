@@ -22,7 +22,7 @@ const headCells = [
 
 const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
   return (
-    <FormControl>
+    <FormControl style={{width: '100%'}}>
       <Select value={statusValue} onChange={handleStatusFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="working">Working</MenuItem>
@@ -35,7 +35,7 @@ const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
 
 const DormFilterDropdown = ({ dormValue, handleDormFilter }) => {
   return (
-    <FormControl>
+    <FormControl style={{width: '100%'}}>
       <Select value={dormValue} onChange={handleDormFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="Hedrick">Hedrick</MenuItem>
@@ -88,11 +88,11 @@ EnhancedTableHead.propTypes = {
 
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
-  const history = useNavigate()
+  // const history = useNavigate()
 
-  const handleClickReport = () => {
-    history("/home/report")
-  }
+  // const handleClickReport = () => {
+  //   history("/home/report")
+  // }
 
   return (
     <Toolbar
@@ -129,13 +129,13 @@ function EnhancedTableToolbar(props) {
       <StatusFilterDropdown statusValue={props.statusValue} handleStatusFilter={props.handleStatusFilter} />
       <DormFilterDropdown dormValue={props.dormValue} handleDormFilter={props.handleDormFilter} />
 
-      {numSelected > 0 ? (
+      {/* {numSelected > 0 ? (
         <Button variant="contained" onClick={handleClickReport}>
           Report for Maintenance
         </Button>
       ) : (
         <Button variant="cotained">Select to Report</Button>
-      )}
+      )} */}
     </Toolbar>
   );
 }

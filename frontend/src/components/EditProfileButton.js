@@ -7,7 +7,7 @@ const EditProfileButton = () => {
         history("/edit_profile");
     }
     return (
-        <button className='editProfileButton' onClick = {handleEditProfile}> Edit Profile </button>
+        <button className='navButton' onClick = {handleEditProfile}> Edit Profile </button>
     )
 }
 
