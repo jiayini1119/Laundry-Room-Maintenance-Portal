@@ -40,7 +40,8 @@ const Login = () => {
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('fullID', res.data._id);
           localStorage.setItem('dorm', res.data.dorm);
-          history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
+          userType === "student" ? history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
+          : history("/home_staff", {state:{id: res.data.name, dorm: res.data.dorm}})
         })
         .catch(error => {
           if (error.response) {
