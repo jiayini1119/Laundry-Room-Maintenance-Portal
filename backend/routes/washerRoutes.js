@@ -1,9 +1,10 @@
 const express = require('express');
-const { getAllWashers, updateWasherStatus, searchDorms } = require('../controllers/washerController');
+const { getAllWashers, updateWasherStatus, searchDorms, getAllWashersInAllDorms } = require('../controllers/washerController');
 const router = express.Router()
 
-router.route("/:id").get(getAllWashers)
-router.route("/").get(searchDorms)
-router.route("/:id").put(updateWasherStatus);
+router.route("/id/:id").get(getAllWashers)
+router.route("/search/").get(searchDorms)
+router.route("/id/:id").put(updateWasherStatus);
+router.route("/getall").get(getAllWashersInAllDorms);
 
 module.exports = router;

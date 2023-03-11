@@ -23,13 +23,88 @@
 }
 
 
+
+/* referenced from Metty on https://codepen.io/Metty/pen/MWjOavR */
+
+.buttonWrapper{
+  display: inline-flex;
+  height: 45px;
+  width: 100%;
+  transform: translate(-0.7%);
+  margin-top: 25px;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  font-family: Roboto, sans-serif;
+}
+.buttonWrapper .option{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+}
+.buttonWrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.buttonWrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #FFD100;;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#student:checked:checked ~ .student,
+#staff:checked:checked ~ .staff{
+  border-color: #FFD100;;
+  background: #FFD100;;
+}
+#student:checked:checked ~ .student .dot,
+#staff:checked:checked ~ .staff .dot{
+  background: #fff;
+}
+#student:checked:checked ~ .student .dot::before,
+#staff:checked:checked ~ .staff .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.buttonWrapper .option span{
+  font-size: medium;
+  color: #808080;
+}
+#student:checked:checked ~ .student span,
+#staff:checked:checked ~ .staff span{
+  color: #fff;
+}
+
+
 input[type="username"], textarea {
   width: 93%;
   height: 45px;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  margin-top: 30px !important;
+  margin-top: 20px !important;
   margin-bottom: 20px !important;
   font-size: medium;
   box-sizing: border-box;

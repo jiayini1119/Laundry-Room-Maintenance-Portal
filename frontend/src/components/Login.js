@@ -12,9 +12,14 @@ const Login = () => {
   const [username, setUsername]=useState();
   const [email, setEmail]=useState();
   const [password, setPassword]=useState();
+  const [userType, setUserType] = useState();
 
   async function handleSubmit(e) {
     e.preventDefault();
+    if (!userType) {
+      alert("Please enter your user type");
+      return;
+    }
 
     if (!email) {
       alert("Please enter your email");
@@ -28,14 +33,15 @@ const Login = () => {
 
     else {
       try {
-        await axios.post("http://localhost:4000/api/user/login", {username, email, password})
+        await axios.post("http://localhost:4000/api/user/login", {username, email, password, userType})
         .then(res=>{
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('fullID', res.data._id);
           localStorage.setItem('dorm', res.data.dorm);
-          history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
+          userType === "student" ? history("/home", {state:{id: res.data.name, dorm: res.data.dorm}})
+          : history("/home_staff", {state:{id: res.data.name, dorm: res.data.dorm}})
         })
         .catch(error => {
           if (error.response) {
@@ -57,6 +63,21 @@ const Login = () => {
     <div className='LoginPage'>
       <form className='authForm' method='post'>
         <h1 className='authHead'>Login</h1>
+        {/* referenced from Metty on https://codepen.io/Metty/pen/MWjOavR */}
+        <div className="buttonWrapper">
+          <input type="radio" id="student" name="userType" value="student" onChange={(e)=>setUserType(e.target.value)} />
+          <label htmlFor="student" className="option student">
+            <div className="dot"></div>
+            <span>student</span>
+          </label>
+          <br />
+          <input type="radio" id="staff" name="userType" value="staff" onChange={(e)=>setUserType(e.target.value)} />
+          <label htmlFor="staff" className="option staff">
+            <div className="dot"></div>
+            <span>staff</span>
+            </label>
+          <br />
+        </div>
         <div>
           <input type="username" onChange={(e)=>setUsername(e.target.value)} placeholder='username' id="username" name="username"/>
         </div>
