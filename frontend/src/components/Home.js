@@ -22,7 +22,8 @@ const Home = () => {
   return (
     <div className="homeheader">
       <h1 className="hometitle">
-        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
+      Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
+      <AccessReportPage />
         <div className="navButtonContainer">
           <EditProfile />
           <Logout />
@@ -34,7 +35,6 @@ const Home = () => {
         Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
       </Typography>
       <WasherTable />
-      <AccessReportPage />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
     </div>

@@ -54,10 +54,6 @@ const rows = [
   createData('RC006', 'working'),
 ];*/
 
-const token = localStorage.getItem('token');
-
-console.log(token)
-
 const headCells = [
   {
     id: 'name',
@@ -110,9 +106,11 @@ EnhancedTableHead.propTypes = {
   rowCount: PropTypes.number.isRequired,
 };
 
+
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
   const history = useNavigate()
+  const token = localStorage.getItem('token');
 
   const handleClickReport = async() => {
    // create report

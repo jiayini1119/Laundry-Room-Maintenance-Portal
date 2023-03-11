@@ -31,7 +31,7 @@ const AccessReportPage = () => {
   }
 
   return(
-    <button className='reportButton' onClick = {handleClick}> Access Report Page </button>
+    <button className='navButton' onClick = {handleClick}> Access Report Page </button>
   )
 }
 export default AccessReportPage;
