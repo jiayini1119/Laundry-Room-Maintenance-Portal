@@ -175,10 +175,10 @@ const WasherTable = () => {
 
   const loadTable = (dorm) => {
 
-    axios('http://localhost:4000/api/washer?search=' + dorm)
+    axios('http://localhost:4000/api/washer/search?search=' + dorm)
       .then(res => {
         let dormId = res.data[0]._id
-        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
+        axios('http://localhost:4000/api/washer/id/' + dormId).then(res => {
           setRows(res.data)
         }).catch(err => console.log(err))
       })

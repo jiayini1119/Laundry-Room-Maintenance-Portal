@@ -151,88 +151,47 @@ const WasherTableStaff = () => {
   const [rows, setRows] = useState([]);
   const [statusValue, setStatusValue] = useState("maintenance");
   const [dormValue, setDormValue] = useState("all")
-  const location = useLocation();
-  const dorm = location.state.dorm
 
   const onStatusFilterChange = (event) => {
     setStatusValue(event.target.value)
-    console.log(event.target.value)
   }
 
   const onDormFilterChange = (event) => {
     setDormValue(event.target.value)
-    console.log(event.target.value)
+  }
+
+  const filterWasher = (data, status) => {
+    if (status === "all") {
+      return data;
+    } else {
+      const filteredWashers = [];
+      const statusCheck = status === "working" ? true : false;
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].status === statusCheck) {
+          filteredWashers.push(data[i]);
+        }
+      }
+      return filteredWashers;
+    }
   }
 
   useEffect(() => {
-    // when dormValue === "all", request should be for all values in dorm
-    axios('http://localhost:4000/api/washer?search=' + dormValue)
-      .then(res => {
-        let dormId = res.data[0]._id
-        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
-          if (statusValue === "all") {
-            setRows(res.data);
-          } else {
-            const filteredWashers = [];
-            const statusCheck = statusValue === "working" ? true : false;
-            for (let i = 0; i < res.data.length; i++) {
-              if (res.data[i].status === statusCheck) {
-                filteredWashers.push(res.data[i]);
-              }
-            }
-            console.log(filteredWashers);
-            setRows(filteredWashers)
-          }
+    if (dormValue === "all") {
+      axios('http://localhost:4000/api/washer/getall')
+        .then(res => {
+          setRows(filterWasher(res.data, statusValue));
         }).catch(err => console.log(err))
-      })
-      .catch(err => console.log(err))
-  }, [statusValue]);
-
-  useEffect(() => {
-    axios('http://localhost:4000/api/washer?search=' + dormValue)
-      .then(res => {
-        let dormId = res.data[0]._id
-        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
-          if (statusValue === "all") {
-            setRows(res.data);
-          } else {
-            const filteredWashers = [];
-            const statusCheck = statusValue === "working" ? true : false;
-            for (let i = 0; i < res.data.length; i++) {
-              if (res.data[i].status === statusCheck) {
-                filteredWashers.push(res.data[i]);
-              }
-            }
-            console.log(filteredWashers);
-            setRows(filteredWashers)
-          }
-        }).catch(err => console.log(err))
-      })
-      .catch(err => console.log(err))
-  }, [dormValue]);
-
-  useEffect(() => {
-    loadTable(dorm);
-  }, [dorm]); //[dorm] invoke useEffect
-
-  const loadTable = (dorm) => {
-
-    axios('http://localhost:4000/api/washer?search=' + dorm)
-      .then(res => {
-        let dormId = res.data[0]._id
-        axios('http://localhost:4000/api/washer/' + dormId).then(res => {
-          const brokenWashers = [];
-          for (let i = 0; i < res.data.length; i++) {
-            if (!res.data[i].status) {
-              brokenWashers.push(res.data[i]);
-            }
-          }
-          console.log(brokenWashers);
-          setRows(brokenWashers)
-        }).catch(err => console.log(err))
-      })
-      .catch(err => console.log(err))
-  }
+    } else {
+      axios('http://localhost:4000/api/washer/search?search=' + dormValue)
+        .then(res => {
+          let dormId = res.data[0]._id
+          axios('http://localhost:4000/api/washer/id/' + dormId).then(res => {
+            setRows(filterWasher(res.data, statusValue));
+          }).catch(err => console.log(err))
+        })
+        .catch(err => console.log(err))
+    }
+  }, [statusValue, dormValue]);
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {

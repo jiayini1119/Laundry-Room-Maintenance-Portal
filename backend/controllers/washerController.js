@@ -2,6 +2,21 @@ const asyncHandler = require("express-async-handler");
 const Dorm = require("../models/dormModel");
 const Washer = require("../models/washerModel");
 
+//get all washers in all dorms
+const getAllWashersInAllDorms = asyncHandler(async(req, res) => {
+    try{
+        const washers = await Washer.find();
+        if (washers) {
+            return res.status(200).json(washers);
+        }else {
+            return res.status(400).json({ msg: 'Dorm not found' });
+        }       
+    }catch(error){
+        res.status(400);
+        throw new Error(error.message);
+    }
+})
+
 //get all the washers in a dorm
 const getAllWashers = asyncHandler(async(req, res) => {
     try{
@@ -52,4 +67,4 @@ const updateWasherStatus = asyncHandler(async(req, res) => {
     }
 })
 
-module.exports = {getAllWashers, searchDorms, updateWasherStatus}
+module.exports = {getAllWashers, searchDorms, updateWasherStatus, getAllWashersInAllDorms}

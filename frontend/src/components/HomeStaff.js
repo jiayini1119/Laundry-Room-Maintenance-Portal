@@ -22,7 +22,9 @@ const HomeStaff = () => {
   return (
     <div className="homeheader">
       <h1 className="hometitle">
-        Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} /><Logout /><EditProfile />
+        Laundry Reporter <Clock />
+        {/* <Dropdown setBgColor={setBgColor} /> */}
+        <Logout /><EditProfile />
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>
