@@ -54,6 +54,10 @@ const rows = [
   createData('RC006', 'working'),
 ];*/
 
+const token = localStorage.getItem('token');
+
+console.log(token)
+
 const headCells = [
   {
     id: 'name',
@@ -110,8 +114,23 @@ function EnhancedTableToolbar(props) {
   const { numSelected } = props;
   const history = useNavigate()
 
-  const handleClickReport = () => {
-    history("/home/report")
+  const handleClickReport = async() => {
+   // create report
+    const config = {
+      headers: {
+          "Content-type": "application/json",
+          Authorization: `Bearer ${token}`,
+      },
+    };
+    const { data } = await axios.post(
+    "http://localhost:4000/api/report",
+    {},
+    config
+  );
+
+  localStorage.setItem('chatData', JSON.stringify(data));
+  history("/home/report")
+
   }
 
   return (
