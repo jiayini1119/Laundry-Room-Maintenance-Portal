@@ -45,7 +45,8 @@ const Signup = () => {
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('dorm', res.data.dorm)
-          history("/home", {state:{id:username, token: res.data.token}})
+ //       history("/home", {state:{id:username, token: res.data.token}})
+          history("/home", {state:{id: res.data.name, token: res.data.token, dorm: res.data.dorm}})
         })
         .catch(error => {
           if (error.response) {
