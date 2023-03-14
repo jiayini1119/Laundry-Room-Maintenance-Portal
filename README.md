@@ -5,7 +5,7 @@ This web application is aiming at informing students about the availability of l
 
 ## Getting Started
 
-### Step 0. Clone the repository
+### Step 0. Clone the Repository
 ```bash
 git clone https://github.com/jiayini1119/Laundry-Room-Maintenance-Portal.git
 cd Laundry-Room-Maintenance-Portal
@@ -46,7 +46,7 @@ Once you logged in, you will be directed to the home page. You will be directed 
 
 ### There are also several distinct features for both students and the staff
 ### If you logged in as a student......
-1. The render status on the home page will be rendered based on the dorm you are in. For example, if you live in Hedrick, you will see the status of Hedrick washers once you log in. You can also view other dorms via the search bar.
+1. The dorm status on the home page will be rendered based on the dorm you are in. For example, if you live in Hedrick, you will see the status of Hedrick washers once you log in. You can also view other dorms via the search bar.
 
 2. You can change your profile by clicking on ```Edit Profile```. This is useful if you change your dorm.
 
