@@ -21,8 +21,10 @@ const Home = () => {
 
   return (
     <div style={{ display: '100%' }}>
+      <br />
       <h1 className="hometitle">
       Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
+      <br />
       <AccessReportPage style={{ marginTop: 50 }} />
         <div className="navButtonContainer">
           <EditProfile />

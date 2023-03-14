@@ -9,14 +9,14 @@
 
 .Dropdown {
   position: absolute;
-  top: 125%;
+  top: 100%;
   right: 300px;
   transform: translate(0, -100%);
 }
 
 .navButtonContainer {
   position: absolute;
-  top: 120%;
+  top: 90%;
   right: 10px;
 }
 
