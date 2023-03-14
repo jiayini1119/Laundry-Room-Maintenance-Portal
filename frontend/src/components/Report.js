@@ -14,7 +14,8 @@ const Report = () => {
   if (email === "admin@admin.com")
   return (
     <div className='reportheader'>
-      <h1 className="reporttitle">
+      <h1 className="hometitle">
+        <br />
         {"Students' Report Messages"}, {id}
       </h1>
       <Box
@@ -37,6 +38,7 @@ const Report = () => {
     return (
       <div className='reportheader'>
         <h1 className="hometitle">
+          <br />
           {"Report the Problem Here"}, {id}
         </h1>
         <hr/>

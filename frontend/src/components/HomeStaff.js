@@ -21,6 +21,7 @@ const HomeStaff = () => {
   return (
     <div className="homeheader" style={{ display: '100%' }}>
       <h1 className="hometitle">
+        <br />
         Laundry Reporter <Clock />
         {/* <Dropdown setBgColor={setBgColor} /> */}
         <div>
@@ -31,6 +32,7 @@ const HomeStaff = () => {
       <hr />
       <div style={{ backgroundColor: bgColor }}>
       <p className="homePageWelcome">
+        <br />
         Welcome to Laundry Reporter, poor Staff {location.state.id} :p
       </p>
       <WasherTableStaff />

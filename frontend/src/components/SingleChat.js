@@ -177,7 +177,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       ) : (
         // to get socket.io on same page
         <Box display="flex" alignItems="center" justifyContent="center" height="100%">
-          <Typography variant="h3" gutterBottom fontFamily="Work sans">
+          <Typography variant="h3" gutterBottom color="white">
             Click on a report to view
           </Typography>
 
