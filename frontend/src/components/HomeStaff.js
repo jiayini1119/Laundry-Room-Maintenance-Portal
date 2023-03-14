@@ -30,7 +30,7 @@ const HomeStaff = () => {
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>
-      <p className="homePageWelcome" style={{ color: bgColor }}>
+      <p className="homePageWelcome">
         Welcome to Laundry Reporter, poor Staff {location.state.id} :p
       </p>
       <WasherTableStaff />
