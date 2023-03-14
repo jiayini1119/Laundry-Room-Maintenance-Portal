@@ -23,14 +23,8 @@ const Home = () => {
       <br />
       <h1 className="hometitle">
       Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
-<<<<<<< HEAD
-      <AccessReportPage/>
-        <div>
-=======
-      <br />
       <AccessReportPage style={{ marginTop: 50 }} />
-        <div className="navButtonContainer">
->>>>>>> d9c8728aa4c49e0686c90419122c1cbf78886ee7
+        <div>
           <EditProfile />
           <Logout />
         </div>
