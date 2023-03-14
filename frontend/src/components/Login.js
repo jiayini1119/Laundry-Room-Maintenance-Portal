@@ -61,6 +61,7 @@ const Login = () => {
 
   return (
     <div className='LoginPage'>
+      <div className='backGround'></div>
       <form className='authForm' method='post'>
         <h1 className='authHead'>Login</h1>
         {/* referenced from Metty on https://codepen.io/Metty/pen/MWjOavR */}

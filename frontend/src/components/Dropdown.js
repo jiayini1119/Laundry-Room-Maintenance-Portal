@@ -14,19 +14,19 @@ function Dropdown({ setBgColor }) {
     });
     switch (event.target.value) {
       case "Hedrick":
-        setBgColor("#f2ecdc");
+        setBgColor("#ff9800");
         break;
       case "Sunset":
-        setBgColor("#dabfc4");
+        setBgColor("#f48fb1");
         break;
       case "Rieber":
-        setBgColor("#add8e6");
+        setBgColor("#26a69a");
         break;
       case "Deneve":
-        setBgColor("#e6e6fa");
+        setBgColor("#7986cb");
         break;
       case "Saxon":
-        setBgColor("#7ec07a");
+        setBgColor("#5a8b5c");
         break;
       default:
         setBgColor("#fff");
