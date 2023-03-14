@@ -219,7 +219,7 @@ const WasherTableStaff = () => {
 
   return (
     <Box sx={{ width: '100%' }}>
-      <Paper elevation={10} sx={{ width: '80%', m: 15 }}>
+      <Paper  sx={{ width: '80%', mt:1, mr:15, ml:16 }}>
         <EnhancedTableToolbar
           numSelected={selected.length}
           statusValue={statusValue}
