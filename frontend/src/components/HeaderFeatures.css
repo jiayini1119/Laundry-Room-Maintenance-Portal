@@ -10,7 +10,7 @@
 
 .Dropdown {
   position: absolute;
-  top: 105%;
+  top: 90%;
   right: 150px;
   transform: translate(0, -100%);
 }
@@ -22,13 +22,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px !important;
   font-size: large;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   display: block;
-  margin: 0 auto;
   position: absolute;
   top: 75%;
   right: 20px;
@@ -47,13 +45,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px !important;
   font-size: large;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   display: block;
-  margin: 0 auto;
   position: absolute;
   top: 75%;
   left: 180px;
@@ -72,13 +68,11 @@
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px !important;
   font-size: large;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   display: block;
-  margin: 0 auto;
   position: absolute;
   top: 75%;
   left: 10px;
@@ -111,13 +105,11 @@ hr {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  margin-top: 20px !important;
   font-size: large;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
   display: block;
-  margin: 0 auto;
   position: absolute;
   top: 9%;
   right: 20px;
