@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from "axios";
+import "./HeaderFeatures.css";
 
 const AccessReportPage = () => {
 
@@ -31,7 +32,7 @@ const AccessReportPage = () => {
   }
 
   return(
-    <button className='navButton' onClick = {handleClick}> Access Report Page </button>
+    <button className='accessReport' onClick = {handleClick}> Report Page </button>
   )
 }
 export default AccessReportPage;

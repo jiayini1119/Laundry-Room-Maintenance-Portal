@@ -1,8 +1,6 @@
 
-import axios from "axios";
 import React, { useState } from 'react';
 import { Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
 
 import Logout from "./Logout";
 import Dropdown from "./Dropdown";
@@ -16,23 +14,25 @@ import EditProfile from "./EditProfileButton";
 import uclaLogo from './images/UCLA_Logo.png';
 
 const Home = () => {
-  const location = useLocation();
   const [bgColor, setBgColor] = useState("#fff");
+  const dorm = localStorage.getItem("dorm")
+  const id = localStorage.getItem("id")
 
   return (
     <div style={{ display: '100%' }}>
       <h1 className="hometitle">
       Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
-      <AccessReportPage style={{ marginTop: 50 }} />
-        <div className="navButtonContainer">
+      <AccessReportPage/>
+        <div>
           <EditProfile />
           <Logout />
         </div>
       </h1>
       <hr />
-      <Typography fontSize={24} color={bgColor} fontFamily='Roboto' style={{ display: 'inline-block', marginLeft: '28%' }}>
-        Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
-      </Typography>
+      <div style={{ backgroundColor: bgColor }}>
+      <p className = "homePageWelcome" >
+        Welcome to laundry in {dorm}, poor Bruin {id}
+      </p>
       <WasherTable />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
