@@ -23,22 +23,21 @@ const HomeStaff = () => {
       <h1 className="hometitle">
         Laundry Reporter <Clock />
         {/* <Dropdown setBgColor={setBgColor} /> */}
-        <div className="navButtonContainer">
+        <div>
           <Logout />
+          <AccessReportPage/>
         </div>
       </h1>
       <hr />
       <div style={{ backgroundColor: bgColor }}>
-      <Typography fontSize={24} color='textPrimary' fontFamily='Roboto' style={{ display: 'inline-block' }}>
+      <p className="homePageWelcome" style={{ color: bgColor }}>
         Welcome to Laundry Reporter, poor Staff {location.state.id} :p
-      </Typography>
+      </p>
       <WasherTableStaff />
-      <AccessReportPage />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
     </div>
   </div>)
 };
-
 
 export default HomeStaff;
