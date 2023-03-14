@@ -3,6 +3,15 @@ _Laundry Room Maintenance Portal for UCLA Students and Staffs_
 
 This web application is aiming at informing students about the availability of laundry machines in various dorms, and reporting the issues to the staffs. In addition, staffs can also use this web application to change washers' status once they are fixed, and receive students' report in time. We hope that this application will help the students locate working washers quickly, and facilitate the communication between students and staffs. 
 
+## Technologies Used
+Client: ```React.js```
+
+Server: ```Node.js```, ```Express.js```
+
+Database: ```MongoDB```
+
+Others: ```Socket.io``` for real time communication, ```Material UI``` for User Interface Framework
+
 ## Getting Started
 
 ### Step 0. Clone the Repository
@@ -63,15 +72,6 @@ On this page, the staff and the students can communicate with each other, and th
 You can also go back to the home page at any time. 
 
 Note that the notification of message is real time, meaning that you don't need to refresh the browser once a new message comes! Try to log in two accounts and send messages to each other to view 😛
-
-### Technologies Used
-Client: ```React.js```
-
-Server: ```Node.js```, ```Express.js```
-
-Database: ```MongoDB```
-
-Others: ```Socket.io``` for real time communicate, ```Material UI``` for User Interface Framework
 
 
 
