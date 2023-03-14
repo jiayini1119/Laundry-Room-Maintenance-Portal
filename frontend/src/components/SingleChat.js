@@ -143,10 +143,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           justifyContent="flex-end"
           padding={3}
           bgcolor="#E8E8E8"
-          width="100%"
+          width="90%"
           height="100%"
           borderRadius="lg"
           overflowY="hidden"
+          className="chatBox"
         >
           {loading ? (
             <Box display="flex" justifyContent="center" alignItems="center">
