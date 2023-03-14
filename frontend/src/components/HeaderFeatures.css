@@ -10,30 +10,17 @@
 
 .Dropdown {
   position: absolute;
-  top: 126%;
+  top: 128%;
   right: 150px;
   transform: translate(0, -100%);
 }
 
 .logoutButton {
-  background-color: #FFD100;
-  color: #2774AE;
-  padding: 17px 22px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-top: 20px !important;
-  font-size: large;
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-  text-align: center;
-  display: block;
-  margin: 0 auto;
-  position: absolute;
-  top: 75%;
-  right: 20px;
+  top: 100%;
+  right: 300px;
   transform: translate(0, -100%);
 }
+
 
 .logoutButton:hover{
   background-color: #2774AE;
