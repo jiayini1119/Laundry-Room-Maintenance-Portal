@@ -36,6 +36,7 @@ const Home = () => {
       <WasherTable />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
+      </div>
   </div>)
 };
 
