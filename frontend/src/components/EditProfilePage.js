@@ -15,7 +15,8 @@ const EditProfilePage = () => {
     const handleOpen = () => setOpen(true);
     const handleClose = (data) => {
         setOpen(false);
-        history("/home", { state: { id: data.name, token: data.token } })
+        localStorage.setItem('dorm', dorm);
+        history("/home", { state: { id: data.name, token: data.token, dorm } })
     }
 
     const style = {
