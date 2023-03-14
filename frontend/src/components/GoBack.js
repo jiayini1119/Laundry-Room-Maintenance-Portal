@@ -17,7 +17,7 @@ const GoBack = () => {
   }
 
   return(
-    <button className='navButton' onClick = {handleClick}> Go back to the home page </button>
+    <button className='goBack' onClick = {handleClick}> Go back to the home page </button>
   )
 }
 export default GoBack;

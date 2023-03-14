@@ -4,6 +4,7 @@ import GoBack from "./GoBack";
 import Box from '@mui/material/Box';
 import MyChats from "./MyChats";
 import  ChatBox  from "./ChatBox";
+import "./HeaderFeatures.css";
 
 
 const Report = () => {
@@ -29,19 +30,16 @@ const Report = () => {
         <MyChats/> 
         <ChatBox/>
       </Box>
-
-      <br />
-      <br />
-      <br />
       <GoBack />
     </div>
   );
   else{
     return (
       <div className='reportheader'>
-        <h1 className="reporttitle">
+        <h1 className="hometitle">
           {"Report the Problem Here"}, {id}
         </h1>
+        <hr/>
         <Box 
           sx={{
             width: '100%',
