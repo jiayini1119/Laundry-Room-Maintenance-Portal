@@ -12,7 +12,7 @@ const GoBack = () => {
   }
 
   return(
-    <button className='reportButton' onClick = {handleClick}> Go back to the home page </button>
+    <button className='navButton' onClick = {handleClick}> Go back to the home page </button>
   )
 }
 export default GoBack;

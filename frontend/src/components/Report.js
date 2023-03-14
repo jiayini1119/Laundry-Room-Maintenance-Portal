@@ -16,7 +16,6 @@ const Report = () => {
       <h1 className="reporttitle">
         {"Students' Report Messages"}, {id}
       </h1>
-      <GoBack />
       <Box
         sx={{
           width: '100%',
@@ -30,6 +29,11 @@ const Report = () => {
         <MyChats/> 
         <ChatBox/>
       </Box>
+
+      <br />
+      <br />
+      <br />
+      <GoBack />
     </div>
   );
   else{
@@ -42,10 +46,8 @@ const Report = () => {
           sx={{
             width: '100%',
             height: '91.5vh',
-            display: 'flex',
-            justifyContent: 'space-between', 
-            flexDirection: 'row',
-            padding: '10px',
+            // display: 'flex',
+            marginLeft: '13%'
           }}
         >
           <ChatBox/>

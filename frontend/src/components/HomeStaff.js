@@ -19,7 +19,7 @@ const HomeStaff = () => {
   const [bgColor, setBgColor] = useState("#fff");
 
   return (
-    <div className="homeheader">
+    <div className="homeheader" style={{ display: '100%' }}>
       <h1 className="hometitle">
         Laundry Reporter <Clock />
         {/* <Dropdown setBgColor={setBgColor} /> */}

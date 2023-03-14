@@ -20,24 +20,22 @@ const Home = () => {
   const [bgColor, setBgColor] = useState("#fff");
 
   return (
-    <div className="homeheader">
+    <div style={{ display: '100%' }}>
       <h1 className="hometitle">
       Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
-      <AccessReportPage />
+      <AccessReportPage style={{ marginTop: 50 }} />
         <div className="navButtonContainer">
           <EditProfile />
           <Logout />
         </div>
       </h1>
       <hr />
-      <div style={{ backgroundColor: bgColor }}>
-      <Typography fontSize={24} color='textPrimary' fontFamily='Roboto' style={{ display: 'inline-block' }}>
+      <Typography fontSize={24} color={bgColor} fontFamily='Roboto' style={{ display: 'inline-block', marginLeft: '28%' }}>
         Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
       </Typography>
       <WasherTable />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
-    </div>
   </div>)
 };
 

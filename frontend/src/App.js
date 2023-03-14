@@ -6,6 +6,7 @@ import EditProfilePage from "./components/EditProfilePage"
 import HomeStaff from "./components/HomeStaff"
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import React, {useState} from 'react';
+import './App.css';
 
 function App(){
   return (
