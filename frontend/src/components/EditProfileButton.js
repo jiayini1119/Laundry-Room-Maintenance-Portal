@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from "react-router-dom";
+import "./HeaderFeatures.css";
 
 const EditProfileButton = () => {
     const history = useNavigate();
@@ -7,7 +8,7 @@ const EditProfileButton = () => {
         history("/edit_profile");
     }
     return (
-        <button className='navButton' onClick = {handleEditProfile}> Edit Profile </button>
+        <button className='editProfile' onClick = {handleEditProfile}> Edit Profile </button>
     )
 }
 
