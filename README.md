@@ -48,7 +48,7 @@ Once you logged in, you will be directed to the home page. You will be directed 
 ### If you logged in as a student......
 1. The render status on the home page will be rendered based on the dorm you are in. For example, if you live in Hedrick, you will see the status of Hedrick washers once you log in. You can also view other dorms via the search bar.
 
-2. You can change your profile by clicking on ```Edit profile```. This is useful if you change your dorm.
+2. You can change your profile by clicking on ```Edit Profile```. This is useful if you change your dorm.
 
 3. Instead of accessing the page directly, you can also click on a specific washer to report. If you haven't established a chat with the staff, being redirected to the report page, you will be created a chat box with the staff for you. If you have established a chat with the staff, you will be able to see all the previous conversation, and report the new problem.
 
