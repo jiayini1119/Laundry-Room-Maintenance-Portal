@@ -7,43 +7,99 @@
   text-align: center;
 }
 
+
 .Dropdown {
   position: absolute;
-  top: 100%;
-  right: 300px;
+  top: 105%;
+  right: 150px;
   transform: translate(0, -100%);
 }
 
-.navButtonContainer {
-  position: absolute;
-  top: 90%;
-  right: 10px;
-}
-
-.navButton {
+.logoutButton {
   background-color: #FFD100;
   color: #2774AE;
   padding: 17px 22px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  margin-top: 20px !important;
   font-size: large;
   font-weight: bold;
   font-family: Arial, Helvetica, sans-serif;
   text-align: center;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 75%;
+  right: 20px;
   transform: translate(0, -100%);
 }
 
-.navButton:hover{
+.logoutButton:hover{
   background-color: #2774AE;
   color:#FFD100;
 }
 
+.accessReport{
+  background-color: #FFD100;
+  color: #2774AE;
+  padding: 17px 22px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px !important;
+  font-size: large;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 75%;
+  left: 180px;
+  transform: translate(0, -100%);
+}
 
+.accessReport:hover{
+  background-color: #2774AE;
+  color:#FFD100;
+}
+
+.editProfile{
+  background-color: #FFD100;
+  color: #2774AE;
+  padding: 17px 22px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px !important;
+  font-size: large;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+  text-align: center;
+  display: block;
+  margin: 0 auto;
+  position: absolute;
+  top: 75%;
+  left: 10px;
+  transform: translate(0, -100%);
+}
+
+.editProfile:hover{
+  background-color: #2774AE;
+  color:#FFD100;
+}
 
 hr {
   color: #FFD100;
   border-style: solid;
   border-width: 2px;
   margin-top: 40px !important;
+}
+
+.homePageWelcome{
+  font-size: 24px;
+  color: #2774AE;
+  font-family: Arial, Helvetica, sans-serif; 
+  text-align: center;
 }

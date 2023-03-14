@@ -25,16 +25,16 @@ const Home = () => {
       <h1 className="hometitle">
       Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
       <br />
-      <AccessReportPage style={{ marginTop: 50 }} />
+      <AccessReportPage/>
         <div className="navButtonContainer">
           <EditProfile />
           <Logout />
         </div>
       </h1>
       <hr />
-      <Typography fontSize={24} color={bgColor} fontFamily='Roboto' style={{ display: 'inline-block', marginLeft: '28%' }}>
+      <p className="homePageWelcome">
         Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
-      </Typography>
+      </p>
       <WasherTable />
       <hr />
       <img src={uclaLogo} alt='UCLA Logo' style={{ position: 'absolute', right: 10, height: '50px', marginBottom: '10px', marginRight: '30px' }}/>
