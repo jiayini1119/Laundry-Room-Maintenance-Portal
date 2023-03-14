@@ -11,7 +11,7 @@
 .Dropdown {
   position: absolute;
   top: 90%;
-  right: 150px;
+  right: 70px;
   transform: translate(0, -100%);
 }
 
@@ -29,7 +29,7 @@
   display: block;
   position: absolute;
   top: 75%;
-  right: 20px;
+  right: 200px;
   transform: translate(0, -100%);
 }
 
