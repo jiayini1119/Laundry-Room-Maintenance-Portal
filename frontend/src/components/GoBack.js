@@ -8,7 +8,11 @@ const GoBack = () => {
   const email = localStorage.getItem('email')
 
   const handleClick = () => {
-    history("/home", {state:{id: id, email: email}})
+    if (email === "admin@admin.com") {
+      history("/home_staff", {state:{id: id, email: email}})
+    } else {
+      history("/home", {state:{id: id, email: email}})
+    }
   }
 
   return(
