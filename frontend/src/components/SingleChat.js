@@ -162,7 +162,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             <TextField
               variant="filled"
               color="secondary"
-              placeholder="Enter a message.."
+              placeholder="Enter a message...(max 80 characters)"
               InputProps={{
                 inputProps: {
                   maxLength: 80,
