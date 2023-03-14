@@ -184,7 +184,7 @@ const WasherTable = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [rows, setRows] = useState([]);
   const location = useLocation();
-  const dorm = location.state.dorm
+  const dorm = location.state.dorm;
 
   useEffect(() => {
     loadTable(dorm);
