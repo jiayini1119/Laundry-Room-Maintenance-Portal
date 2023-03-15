@@ -82,8 +82,8 @@ const Signup = () => {
         </div>
       <button className='authSubmit' onClick={handleSubmit}> Submit </button>
       <br/>
-      <p className='remind'>Already signed up?</p>
-      <Link to='/' className='authLink'>Login Page</Link>
+      <p className='remind' style={{marginRight: 0, transform: "translate(-7%, 0)"}}>Already signed up?</p>
+      <Link to='/' className='authLink' style={{padding: 0, transform: "translate(-3%, 0)"}}>Login Page</Link>
       </form>
     </div>
   )

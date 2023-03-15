@@ -1,11 +1,7 @@
-
-import axios from "axios";
-import React, { useState } from 'react';
-import { Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import React from 'react';
+import { useLocation } from 'react-router-dom';
 
 import Logout from "./Logout";
-import Dropdown from "./Dropdown";
 import Clock from "./Clock";
 import WasherTableStaff from "./WasherTableStaff"
 import "./LoginStyle.css";
@@ -16,23 +12,21 @@ import uclaLogo from './images/UCLA_Logo.png';
 
 const HomeStaff = () => {
   const location = useLocation();
-  const [bgColor, setBgColor] = useState("#fff");
 
   return (
     <div className="homeheader" style={{ display: '100%' }}>
-      <h1 className="hometitle">
+      <h1 className="hometitle" style={{ marginTop: 0 }}>
         <br />
-        Laundry Reporter <Clock />
-        {/* <Dropdown setBgColor={setBgColor} /> */}
+        Bruin Laundry <Clock />
+        <br />
         <div>
           <Logout />
           <AccessReportPage/>
         </div>
       </h1>
-      <hr />
-      <div style={{ backgroundColor: bgColor }}>
+      <hr style={{marginTop: 0}} />
+      <div>
       <p className="homePageWelcome">
-        <br />
         Welcome to Laundry Reporter, poor Staff {location.state.id} :p
       </p>
       <WasherTableStaff />

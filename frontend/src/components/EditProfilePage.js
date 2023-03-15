@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-import { Box, Modal, Typography } from '@mui/material';
+import { Box, FormControl, FormHelperText, MenuItem, Modal, Select, Typography } from '@mui/material';
 import GoBack from "./GoBack";
 import "./LoginStyle.css";
 
@@ -10,7 +10,7 @@ const cheerio = require('cheerio');
 const EditProfilePage = () => {
     const history = useNavigate();
     const email = localStorage.getItem("email");
-    const [dorm, setDorm] = useState();
+    const [dorm, setDorm] = useState("");
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = (data) => {
@@ -18,6 +18,9 @@ const EditProfilePage = () => {
         localStorage.setItem('dorm', dorm);
         history("/home", { state: { id: localStorage.getItem('id'), token: data.token, dorm } })
     }
+    const handleDropdownChange = (e) => {
+        setDorm(e.target.value);
+    };
 
     const style = {
         position: 'absolute',
@@ -65,18 +68,20 @@ const EditProfilePage = () => {
     }
 
     return (
-        <div className='EditProfilePage'>
+        <div>
             <form className='authForm' method='post'>
                 <h1 className='authHead'>Edit Profile</h1>
                 <div>
-                    <input list="dorms" type="dorm" onChange={(e) => setDorm(e.target.value)} placeholder="select your dorm" id="dorm" name="dorm" />
-                    <datalist id="dorms">
-                        <option value="Hedrick" />
-                        <option value="Sunset" />
-                        <option value="Rieber" />
-                        <option value="Deneve" />
-                        <option value="Saxon" />
-                    </datalist>
+                    <FormControl sx={{ m: 1, width: 200, left: "50%", transform: "translateX(-55%)" }}>
+                        <Select value={dorm} onChange={handleDropdownChange} inputProps={{MenuProps: {disableScrollLock: true}}}>
+                            <MenuItem value="Hedrick">Hedrick</MenuItem>
+                            <MenuItem value="Sunset">Sunset</MenuItem>
+                            <MenuItem value="Rieber">Rieber</MenuItem>
+                            <MenuItem value="Deneve">Deneve</MenuItem>
+                            <MenuItem value="Saxon">Saxon</MenuItem>
+                        </Select>
+                        <FormHelperText>Select a dorm</FormHelperText>
+                    </FormControl>
                 </div>
                 <button className='authSubmit' onClick={handleSubmit}> Submit </button>
                 <br />
@@ -86,9 +91,10 @@ const EditProfilePage = () => {
                 onClose={handleClose}
                 aria-labelledby="modal-modal-title"
                 aria-describedby="modal-modal-description"
+                disableScrollLock={true}
             >
                 <Box sx={style}>
-                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                    <Typography id="modal-modal-title" variant="h6" component="h2" align="center">
                         Profile updated successfully!
                     </Typography>
                 </Box>
