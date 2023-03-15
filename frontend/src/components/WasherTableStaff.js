@@ -21,7 +21,7 @@ const headCells = [
 
 const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
   return (
-    <FormControl style={{ width: '30%' }}>
+    <FormControl style={{ width: '30%', marginTop: '15px' }}>
       <Select value={statusValue} onChange={handleStatusFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="working">Working</MenuItem>
@@ -34,7 +34,7 @@ const StatusFilterDropdown = ({ statusValue, handleStatusFilter }) => {
 
 const DormFilterDropdown = ({ dormValue, handleDormFilter }) => {
   return (
-    <FormControl style={{ width: '20%' }}>
+    <FormControl style={{ width: '20%', marginTop: '15px' }}>
       <Select value={dormValue} onChange={handleDormFilter}>
         <MenuItem value="all">All</MenuItem>
         <MenuItem value="Hedrick">Hedrick</MenuItem>
