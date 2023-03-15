@@ -6,7 +6,6 @@ const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password, dorm } = req.body
 
     if (!name || !email || !password || !dorm){
-        console.log(name, email, password, dorm);
         res.status(400);
         throw new Error("Please Enter All the Fields");
     }
@@ -42,11 +41,15 @@ const registerUser = asyncHandler(async (req, res) => {
 })
 
 const authUser = asyncHandler(async(req, res) => {
-    const {email, password} = req.body;
+    const {email, password, userType} = req.body;
+
+    // restrict admin account to only login to staff portal
+    if ((userType === "staff" && email != "admin@admin.com") || (userType === "student" && email === "admin@admin.com")) {
+        res.status(401);
+        throw new Error("Invalid Email or Password");
+    }
 
     const user = await User.findOne({ email });
-
-    console.log(user);
 
     if (user && (await user.matchPassword(password))){
         res.json({
