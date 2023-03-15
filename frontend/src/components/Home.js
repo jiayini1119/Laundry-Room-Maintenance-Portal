@@ -30,7 +30,7 @@ const Home = () => {
       </h1>
       <hr style={{marginTop: 0}} />
       <p className="homePageWelcome" style={{ color: bgColor }}>
-        Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
+        Welcome to Bruin Laundry {location.state.id}!
       </p>
       <WasherTable />
       <hr />

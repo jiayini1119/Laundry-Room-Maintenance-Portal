@@ -27,7 +27,7 @@ const HomeStaff = () => {
       <hr style={{marginTop: 0}} />
       <div>
       <p className="homePageWelcome">
-        Welcome to Laundry Reporter, poor Staff {location.state.id} :p
+        Welcome to Bruin Laundry {location.state.id}!
       </p>
       <WasherTableStaff />
       <hr />
