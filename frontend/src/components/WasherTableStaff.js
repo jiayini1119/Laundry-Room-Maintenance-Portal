@@ -134,10 +134,12 @@ const WasherTableStaff = () => {
   // settings available in Washer table header
   const onStatusFilterChange = (event) => {
     setStatusValue(event.target.value)
+    setPage(0)
   }
 
   const onDormFilterChange = (event) => {
     setDormValue(event.target.value)
+    setPage(0)
   }
 
   const onSwitchChange = (event) => {
