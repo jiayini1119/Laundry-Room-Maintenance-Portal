@@ -3,6 +3,8 @@ _Laundry Room Maintenance Portal for UCLA Students and Staff_
 
 This web application aims to inform students about the working statuses of laundry machines in various dorms on The Hill, and reporting the issues to housing staff. In addition, the staff can use the platform to change laundry machine statuses after repairs, and receive students' report in real time. We hope that this application will help students locate working washers quickly, and facilitate communication between students and staff. 
 
+Group Members: Jiayi Ni, Yang Xing, Wei Jun Ong, Yiran Wu, Arnold He
+
 ## Technologies Used
 Client: ```React.js```
 
@@ -82,7 +84,7 @@ Note that messages are sent and fetched in real time, which means that you do no
 
 4. “React Table Component - Material UI.” React Table Component - Material UI, https://mui.com/material-ui/react-table/.
 
-5. RoadsideCoder. "Single and Group Chat Messages in React JS - MERN Stack Chat App with Socket.IO." Youtube. March 5, 2023. https://www.youtube.com/watch?v=3vRcB0P84t4&list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf
+5. RoadsideCoder. “Mern Stack Chat App with Socket.io Tutorial.” YouTube, YouTube, https://www.youtube.com/playlist?list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf. 
 
 6. Techy Web Dev. "Login and Signup tutorial in React JS with node ,express and mongoDB in 2023 | MERN stack tutorial". Youtube. Feb 12, 2023. https://www.youtube.com/watch?v=S9eCBX-Re8A
 
