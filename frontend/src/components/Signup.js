@@ -49,10 +49,10 @@ const Signup = () => {
           setChats(undefined)
           localStorage.clear()
           localStorage.setItem('token', res.data.token);
-          localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
           localStorage.setItem('dorm', res.data.dorm)
+          localStorage.setItem('fullID', res.data._id);
  //       history("/home", {state:{id:username, token: res.data.token}})
           history("/home", {state:{id: res.data.name, token: res.data.token, dorm: res.data.dorm}})
         })
