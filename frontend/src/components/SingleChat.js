@@ -21,21 +21,20 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false)
   
   const { selectedChat, setSelectedChat} = ChatState();
-  var chatData;
+  var chatData = undefined;
 
-  if (email !== "admin@admin.com"){
-    chatData = JSON.parse(localStorage.getItem('chatData'));
-  }
+  useEffect(() => {
+    if (email !== "admin@admin.com") {
+      chatData = JSON.parse(localStorage.getItem('chatData'));
+    }
+    setSelectedChat(chatData); 
+  }, []);
 
   // set up and connect
   useEffect(() => {
     socket = io(ENDPOINT);
     socket.emit("setup", fullID);
     socket.on("connected", () => setSocketConnected(true));  
-  }, []);
-
-  useEffect(() => {
-    setSelectedChat(chatData); 
   }, []);
 
   const fetchMessages = async () => {
@@ -95,13 +94,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     setNewMessage(e.target.value);
   };
 
-
-
   useEffect(() => {
     fetchMessages();
 
   }, [selectedChat]);
-
 
   useEffect(()=>{
     socket.on("message received", (newMessageReceived) => {
