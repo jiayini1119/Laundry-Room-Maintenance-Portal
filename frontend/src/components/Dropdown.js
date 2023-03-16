@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Select, MenuItem, FormHelperText, FormControl} from '@mui/material';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -6,13 +6,10 @@ import { useLocation, useNavigate } from 'react-router-dom';
 function Dropdown({ setBgColor }) {
   const location = useLocation();
   const history = useNavigate();
-  const [value, setValue] = useState(location.state.dorm); 
-  const handleChange = (event) => {
-    setValue(event.target.value); 
-    history("/home", {
-      state: { id: location.state.id, dorm: event.target.value },
-    });
-    switch (event.target.value) {
+  const [value, setValue] = useState(location.state.dorm);
+
+  const setColor = (dormValue) => {
+    switch (dormValue) {
       case "Hedrick":
         setBgColor("#ff9800");
         break;
@@ -32,7 +29,19 @@ function Dropdown({ setBgColor }) {
         setBgColor("#fff");
         break;
     }
-    };
+  };
+  
+  useEffect(() => {
+    setColor(value);
+  }, []);
+
+  const handleChange = (event) => {
+    setValue(event.target.value); 
+    history("/home", {
+      state: { id: location.state.id, dorm: event.target.value },
+    });
+    setColor(event.target.value);
+  };
 
   return (
     <div className="Dropdown">

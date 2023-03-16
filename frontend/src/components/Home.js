@@ -1,8 +1,5 @@
-
-import axios from "axios";
 import React, { useState } from 'react';
-import { Typography } from '@mui/material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
 import Logout from "./Logout";
 import Dropdown from "./Dropdown";
@@ -23,7 +20,7 @@ const Home = () => {
     <div style={{ display: '100%' }}>
       <br />
       <h1 className="hometitle">
-      Laundry Reporter <Clock /><Dropdown setBgColor={setBgColor} />
+      Bruin Laundry <Clock /><Dropdown setBgColor={setBgColor} />
       <br />
       <AccessReportPage/>
         <div className="navButtonContainer">
@@ -31,9 +28,9 @@ const Home = () => {
           <Logout />
         </div>
       </h1>
-      <hr />
+      <hr style={{marginTop: 0}} />
       <p className="homePageWelcome" style={{ color: bgColor }}>
-        Welcome to laundry in {location.state.dorm}, poor Bruin {location.state.id} :p
+        Welcome to Bruin Laundry {location.state.id}!
       </p>
       <WasherTable />
       <hr />
