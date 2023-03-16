@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 import "./HeaderFeatures.css";
 
+
+/* Reference: Workforwin. "How to create a digital clock in ReactJs?" Youtube, March 1, 2023. https://www.youtube.com/watch?v=T_lFnwLiATc*/
 const Clock = () => {
   const [currentTime, setCurrentTime] = useState(new Date().toLocaleTimeString());
 
