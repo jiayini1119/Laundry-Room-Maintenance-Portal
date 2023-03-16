@@ -74,18 +74,18 @@ You can also go back to the home page at any time.
 Note that messages are sent and fetched in real time, which means that you do not need to refresh the browser to view a new message! Try to log in with two separate accounts and send messages between each other to test this out 😛
 
 ## References
-“Custom Radio Buttons” Metty, CodePen, https://codepen.io/Metty/pen/MWjOavR
+1. “Custom Radio Buttons” Metty, CodePen, https://codepen.io/Metty/pen/MWjOavR
 
-“Download UCLA Campus Wallpaper.” Wallpapers.com, 6 Feb. 2023, https://wallpapers.com/wallpapers/ucla-campus-q74mkup6pszhqe37.html.
+2. “Download UCLA Campus Wallpaper.” Wallpapers.com, 6 Feb. 2023, https://wallpapers.com/wallpapers/ucla-campus-q74mkup6pszhqe37.html.
 
-“How to Create a Material Dropdown Selection in Reactjs Using Material-Ui.” WebDevAssist, https://webdevassist.com/reactjs-materialui/material-ui-select-component.
+3. “How to Create a Material Dropdown Selection in Reactjs Using Material-Ui.” WebDevAssist, https://webdevassist.com/reactjs-materialui/material-ui-select-component.
 
-“React Table Component - Material UI.” React Table Component - Material UI, https://mui.com/material-ui/react-table/.
+4. “React Table Component - Material UI.” React Table Component - Material UI, https://mui.com/material-ui/react-table/.
 
-RoadsideCoder. "Single and Group Chat Messages in React JS - MERN Stack Chat App with Socket.IO." Youtube. March 5, 2023. https://www.youtube.com/watch?v=cHziFZ7Q58Y&list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf&index=15
+5. RoadsideCoder. "Single and Group Chat Messages in React JS - MERN Stack Chat App with Socket.IO." Youtube. March 5, 2023. https://www.youtube.com/watch?v=3vRcB0P84t4&list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf
 
-Techy Web Dev. "Login and Signup tutorial in React JS with node ,express and mongoDB in 2023 | MERN stack tutorial". Youtube. Feb 12, 2023. https://www.youtube.com/watch?v=S9eCBX-Re8A
+6. Techy Web Dev. "Login and Signup tutorial in React JS with node ,express and mongoDB in 2023 | MERN stack tutorial". Youtube. Feb 12, 2023. https://www.youtube.com/watch?v=S9eCBX-Re8A
 
-Workforwin. "How to create a digital clock in ReactJs?" Youtube, March 1, 2023. https://www.youtube.com/watch?v=T_lFnwLiATc
+7. Workforwin. "How to create a digital clock in ReactJs?" Youtube, March 1, 2023. https://www.youtube.com/watch?v=T_lFnwLiATc
 
-“Zoom Backgrounds.” UCLA Health System, https://www.uclahealth.org/brand/digital-screens/zoom-backgrounds.
+8. “Zoom Backgrounds.” UCLA Health System, https://www.uclahealth.org/brand/digital-screens/zoom-backgrounds.
