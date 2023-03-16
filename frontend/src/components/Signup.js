@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import { useNavigate, Link } from 'react-router-dom';
 import "./LoginStyle.css"
+import { ChatState } from "../Context/ChatProvider";
+
 
 const cheerio = require('cheerio');
 
@@ -15,6 +17,7 @@ const Signup = () => {
   const [password, setPassword]=useState();
   const [username, setUsername]=useState();
   const [dorm, setDorm]=useState();
+  const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -42,6 +45,9 @@ const Signup = () => {
       try {
         await axios.post("http://localhost:4000/api/user/", {email, password, 'name': username, dorm})
         .then(res=>{
+          setSelectedChat(undefined)
+          setChats(undefined)
+          localStorage.clear()
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);

@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import axios from "axios";
 import { useNavigate, Link } from 'react-router-dom';
 import "./LoginStyle.css";
+import { ChatState } from "../Context/ChatProvider";
+
 
 /*reference: Techy Web Dev. "Login and Signup tutorial in React JS with node ,express and mongoDB in 2023 | MERN stack tutorial". Youtube. Feb 12, 2023. https://www.youtube.com/watch?v=S9eCBX-Re8A*/
 const cheerio = require('cheerio');
@@ -14,6 +16,8 @@ const Login = () => {
   const [email, setEmail]=useState();
   const [password, setPassword]=useState();
   const [userType, setUserType] = useState();
+
+  const { selectedChat, setSelectedChat, chats, setChats } = ChatState();
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -36,6 +40,9 @@ const Login = () => {
       try {
         await axios.post("http://localhost:4000/api/user/login", {username, email, password, userType})
         .then(res=>{
+          setSelectedChat(undefined)
+          setChats(undefined)
+          localStorage.clear()
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('id', res.data.name);
           localStorage.setItem('email', res.data.email);
