@@ -1,11 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import ScrollableFeed from "react-scrollable-feed"
 import { isSameSenderMargin } from "../config/ChatLogics"
+import { ChatState } from "../Context/ChatProvider";
 
 /*Reference: RoadsideCoder. "Single and Group Chat Messages in React JS - MERN Stack Chat App with Socket.IO." Youtube. March 5, 2023. https://www.youtube.com/watch?v=cHziFZ7Q58Y&list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf&index=15*/
 const ScrollableChat = ({ messages }) => {
   const id = localStorage.getItem('fullID');
+  const email = localStorage.getItem('email');
   const containerRef = useRef(null);
+  const { selectedChat, setSelectedChat} = ChatState();
+
   useEffect(() => {
     containerRef.current.scrollTop = containerRef.current.scrollHeight;
   }, [messages]);
@@ -19,8 +23,16 @@ const ScrollableChat = ({ messages }) => {
           overflowY: "auto",
         }}
       >
-      {messages && messages.map((m,i)=>
-        <>
+      {messages && messages.filter(m => {
+        if (email !== 'admin@admin.com') {
+          return true;
+        } else {
+          const mId = m.sender._id;
+          return mId === selectedChat.users[0]._id || mId === selectedChat.users[1]._id;
+        }
+      }).map((m,i)=> {
+        return ( 
+          <>
         <div style={{display: "flex", height: "30px"}} key={m._id}>
           <span
               style={{
@@ -39,6 +51,8 @@ const ScrollableChat = ({ messages }) => {
             </span>
         </div>
         </>
+        )
+      }
         )}
         </div>
     </ScrollableFeed>
