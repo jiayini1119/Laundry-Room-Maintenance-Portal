@@ -111,10 +111,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   useEffect(()=>{
     socket.on("message received", (newMessageReceived) => {
       console.log(newMessageReceived)
-      const new_sender = newMessageReceived.sender._id
-      const original_sender = messages[0].sender._id
-      if (new_sender !== original_sender)
-        return;
       setMessages([...messages, newMessageReceived])
     });  
   })

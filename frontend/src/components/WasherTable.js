@@ -18,42 +18,6 @@ import Label from './label';
 import { useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
 
-
-/*
-function createData(name, status) {
-  return {
-    name,
-    status,
-  };
-}
-
-const rows = [
-  createData('DEN001', 'working'),
-  createData('DEN002', 'working'),
-  createData('DEN003', 'working'),
-  createData('DEN004', 'in maintenance'),
-  createData('DEN005', 'in maintenance'),
-  createData('DEN006', 'working'),
-  createData('SV001', 'working'),
-  createData('SV002', 'working'),
-  createData('SV003', 'working'),
-  createData('SP001', 'in maintenance'),
-  createData('SP002', 'working'),
-  createData('SP003', 'working'),
-  createData('HC001', 'working'),
-  createData('HC002', 'in maintenance'),
-  createData('HC003', 'working'),
-  createData('HC004', 'in maintenance'),
-  createData('OH001', 'working'),
-  createData('OH002', 'working'),
-  createData('RC001', 'working'),
-  createData('RC002', 'working'),
-  createData('RC003', 'working'),
-  createData('RC004', 'working'),
-  createData('RC005', 'working'),
-  createData('RC006', 'working'),
-];*/
-
 const headCells = [
   {
     id: 'name',

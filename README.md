@@ -3,6 +3,8 @@ _Laundry Room Maintenance Portal for UCLA Students and Staff_
 
 This web application aims to inform students about the working statuses of laundry machines in various dorms on The Hill, and reporting the issues to housing staff. In addition, the staff can use the platform to change laundry machine statuses after repairs, and receive students' report in real time. We hope that this application will help students locate working washers quickly, and facilitate communication between students and staff. 
 
+Group Members: Jiayi Ni, Yang Xing, Wei Jun Ong, Yiran Wu, Arnold He
+
 ## Technologies Used
 Client: ```React.js```
 
@@ -72,3 +74,20 @@ On this page, the staff and students can communicate with each other, and studen
 You can also go back to the home page at any time. 
 
 Note that messages are sent and fetched in real time, which means that you do not need to refresh the browser to view a new message! Try to log in with two separate accounts and send messages between each other to test this out 😛
+
+## References
+1. “Custom Radio Buttons” Metty, CodePen, https://codepen.io/Metty/pen/MWjOavR
+
+2. “Download UCLA Campus Wallpaper.” Wallpapers.com, 6 Feb. 2023, https://wallpapers.com/wallpapers/ucla-campus-q74mkup6pszhqe37.html.
+
+3. “How to Create a Material Dropdown Selection in Reactjs Using Material-Ui.” WebDevAssist, https://webdevassist.com/reactjs-materialui/material-ui-select-component.
+
+4. “React Table Component - Material UI.” React Table Component - Material UI, https://mui.com/material-ui/react-table/.
+
+5. RoadsideCoder. “Mern Stack Chat App with Socket.io Tutorial.” YouTube, YouTube, https://www.youtube.com/playlist?list=PLKhlp2qtUcSZsGkxAdgnPcHioRr-4guZf. 
+
+6. Techy Web Dev. "Login and Signup tutorial in React JS with node ,express and mongoDB in 2023 | MERN stack tutorial". Youtube. Feb 12, 2023. https://www.youtube.com/watch?v=S9eCBX-Re8A
+
+7. Workforwin. "How to create a digital clock in ReactJs?" Youtube, March 1, 2023. https://www.youtube.com/watch?v=T_lFnwLiATc
+
+8. “Zoom Backgrounds.” UCLA Health System, https://www.uclahealth.org/brand/digital-screens/zoom-backgrounds.
