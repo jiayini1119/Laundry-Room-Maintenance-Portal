@@ -35,7 +35,6 @@ const MyChats = () => {
     // eslint-disable-next-line
   }, []);
 
-
   return (
     <Box
       display={{ xs: selectedChat ? 'none' : 'flex', md: 'flex' }}
