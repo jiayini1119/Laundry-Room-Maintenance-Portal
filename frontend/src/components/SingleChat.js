@@ -3,6 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ScrollableChat from "./ScrollableChat";
+import {GetSender2} from "../config/ChatLogics"
 
 import { ChatState } from "../Context/ChatProvider";
 import io from "socket.io-client";
@@ -22,6 +23,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   
   const { selectedChat, setSelectedChat} = ChatState();
   var chatData = undefined;
+  const id = localStorage.getItem('fullID');
 
   useEffect(() => {
     if (email !== "admin@admin.com") {
@@ -53,7 +55,14 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
         `http://localhost:4000/api/message/${selectedChat._id}`,
         config
       );
+
       setMessages(data);
+      // console.log(data[data.length-1].sender._id);
+      // console.log(data[0].sender._id);
+      // if (id === '63f5cac44362fbc451422908' && data[data.length-1].sender._id !== data[0].sender._id && data[data.length-1].sender._id !== "63f5cac44362fbc451422908") {
+      //   messages = messages.slice(0,-1);
+      //   // console.log(messages)
+      // }
       setLoading(false);
       // join the chat
       socket.emit("join chat", selectedChat._id)
@@ -102,6 +111,10 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   useEffect(()=>{
     socket.on("message received", (newMessageReceived) => {
       console.log(newMessageReceived)
+      const new_sender = newMessageReceived.sender._id
+      const original_sender = messages[0].sender._id
+      if (new_sender !== original_sender)
+        return;
       setMessages([...messages, newMessageReceived])
     });  
   })

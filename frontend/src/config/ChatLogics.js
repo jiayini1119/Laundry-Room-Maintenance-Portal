@@ -24,3 +24,19 @@ export const getSender = (loggedUser, users) =>{
   return "admin"
 };
 
+
+export const GetSender2 = (loggedUser, users) =>{
+  // if (loggedUser === "admin")
+  //   return users[0].name === "admin" ? users[1].name: users[0].name
+  // return "admin"
+  return users[0]._id=== loggedUser._id? users[1]._id: users[0]._id
+};
+
+
+export const GetReceiver2 = (loggedUser, users) =>{
+  // if (loggedUser === "admin")
+  //   return users[0].name === "admin" ? users[1].name: users[0].name
+  // return "admin"
+  return users[0]._id=== loggedUser._id? users[0]._id: users[1]._id
+};
+

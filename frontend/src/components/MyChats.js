@@ -22,6 +22,7 @@ const MyChats = () => {
         },
       };
       const { data } = await axios.get("http://localhost:4000/api/report", config);
+      
       setChats(data);
     } catch (error) {
       alert("Failed to Fetch Data");
